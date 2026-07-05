@@ -1,5 +1,5 @@
 <template>
-  <section class="hero">
+  <section class="hero" id="topo">
     <div class="hero-bg">
       <div
         v-for="img in heroImages"
@@ -11,13 +11,33 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="mono hero-tagline">Ponto de Cultura Comunitário</span>
-      <h1>Tecendo novos modos de <i style="font-family: 'Playfair Display'; font-style: italic;">habitar a terra.</i></h1>
-      <p>A continuidade de uma trajetória iniciada em 2014, unindo bioconstrução, agroecologia, arte e ancestralidade para cultivar autonomia e harmonia.</p>
+      <h1>Tecendo novos modos de <i>habitar a terra.</i></h1>
+      <p>Uma década (2014–2024) no Círculo Vivencial Terra Viva em Águas da Prata (SP) e a transição para o Esfera Terra Viva — sistematizando e multiplicando saberes em bioconstrução, agroecologia, arte e ancestralidade.</p>
+
+      <div class="hero-highlights">
+        <div class="highlight-item">
+          <span class="highlight-num">10+</span>
+          <span class="highlight-label">anos de trajetória</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-num">50+</span>
+          <span class="highlight-label">voluntários acolhidos</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-num">329</span>
+          <span class="highlight-label">publicações no Instagram</span>
+        </div>
+      </div>
+
+      <FaqAccordion :items="faqItems" title="Sobre o Projeto" />
     </div>
   </section>
 </template>
 
 <script setup>
+import FaqAccordion from './FaqAccordion.vue'
+import { faq } from '../data/faqData.js'
+
 function assetPath(path) {
   const base = import.meta.env.BASE_URL
   const clean = path.startsWith('/') ? path.slice(1) : path
@@ -29,6 +49,8 @@ const heroImages = [
   assetPath('images/hero-2.webp'),
   assetPath('images/hero-3.webp')
 ]
+
+const faqItems = faq.hero
 </script>
 
 <style scoped>
@@ -58,20 +80,9 @@ const heroImages = [
   filter: saturate(0.8) sepia(0.3);
 }
 
-.hero-bg-img:nth-child(1) {
-  background-position: center 30%;
-  opacity: 0.15;
-}
-
-.hero-bg-img:nth-child(2) {
-  background-position: center 60%;
-  opacity: 0.08;
-}
-
-.hero-bg-img:nth-child(3) {
-  background-position: center 20%;
-  opacity: 0.1;
-}
+.hero-bg-img:nth-child(1) { background-position: center 30%; opacity: 0.15; }
+.hero-bg-img:nth-child(2) { background-position: center 60%; opacity: 0.08; }
+.hero-bg-img:nth-child(3) { background-position: center 20%; opacity: 0.1; }
 
 .hero-overlay {
   position: absolute;
@@ -97,6 +108,11 @@ const heroImages = [
   margin-bottom: 2rem;
 }
 
+.hero h1 i {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
 .hero p {
   max-width: 500px;
   font-size: 1.1rem;
@@ -105,9 +121,39 @@ const heroImages = [
   text-align: right;
   border-right: 2px solid var(--terracotta);
   padding-right: 2rem;
+  line-height: 1.7;
+}
+
+.hero-highlights {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.highlight-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--terracotta);
+  line-height: 1;
+}
+
+.highlight-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--moss-haze);
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 900px) {
   .hero h1 { font-size: 3rem; }
+  .hero-highlights { gap: 2rem; flex-wrap: wrap; }
+  .highlight-num { font-size: 2rem; }
 }
 </style>
