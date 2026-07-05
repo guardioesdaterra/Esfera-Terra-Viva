@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esfera Terra Viva | Ponto de Cultura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ochre-sun: #E2725B;
+            --clay-deep: #4A3728;
+            --moss-haze: #6B705C;
+            --sand-paper: #F4EBD9;
+            --terracotta: #BC6C25;
+            --ink: #2C2C2C;
+            --white-bleached: #FFFBF2;
+            --transition-soft: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--sand-paper);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Sun-Bleached Diffusion Texture */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .diffusion-blob {
+            position: fixed;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, var(--ochre-sun) 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.15;
+            top: -20%;
+            right: -10%;
+            z-index: -1;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-10%, 10%) scale(1.1); }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            color: var(--clay-deep);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.15rem;
+            color: var(--moss-haze);
+        }
+
+        /* Header & Nav */
+        nav {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--sand-paper) 40%, transparent);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--clay-deep);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition-soft);
+            opacity: 0.7;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--ochre-sun);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 8%;
+            position: relative;
+        }
+
+        .hero-tagline {
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            line-height: 1.1;
+            max-width: 900px;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            max-width: 500px;
+            font-size: 1.1rem;
+            color: var(--moss-haze);
+            margin-left: auto;
+            text-align: right;
+            border-right: 2px solid var(--terracotta);
+            padding-right: 2rem;
+        }
+
+        /* Grid System */
+        .container {
+            padding: 6rem 8%;
+        }
+
+        .organic-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        /* Pillars / Cards */
+        .pillar-card {
+            grid-column: span 4;
+            background: var(--white-bleached);
+            padding: 3rem 2rem;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transition: var(--transition-soft);
+            border: 1px solid rgba(74, 55, 40, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            background: var(--sand-paper);
+            box-shadow: 0 30px 60px rgba(74, 55, 40, 0.08);
+        }
+
+        .pillar-card h3 {
+            margin: 1.5rem 0 1rem;
+            font-size: 1.75rem;
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--terracotta);
+            opacity: 0.8;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--clay-deep);
+            color: var(--white-bleached);
+            padding: 8rem 8%;
+            margin-top: 4rem;
+            border-radius: 120px 120px 0 0;
+        }
+
+        .timeline-section h2 {
+            color: var(--sand-paper);
+            font-size: 3.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-flex {
+            display: flex;
+            gap: 4rem;
+            position: relative;
+        }
+
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(244, 235, 217, 0.2);
+        }
+
+        .timeline-year {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--ochre-sun);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Action Section */
+        .participation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--terracotta);
+            margin: 6rem 8%;
+            padding: 4rem;
+            border-radius: 30px;
+            color: white;
+        }
+
+        .btn-organic {
+            padding: 1.2rem 2.5rem;
+            background: var(--white-bleached);
+            color: var(--clay-deep);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-soft);
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-organic:hover {
+            transform: scale(1.05);
+            background: var(--clay-deep);
+            color: var(--white-bleached);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 8%;
+            border-top: 1px solid rgba(74, 55, 40, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-brand h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 4rem;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: var(--moss-haze);
+            font-size: 0.8rem;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .pillar-card { grid-column: span 6; }
+            .timeline-flex { flex-direction: column; }
+            .participation { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 600px) {
+            .pillar-card { grid-column: span 12; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    <div class="diffusion-blob"></div>
+
+    <nav>
+        <a href="#" class="logo">Esfera Terra Viva</a>
+        <div class="nav-links">
+            <a href="#sobre">SOBRE</a>
+            <a href="#fazemos">O QUE FAZEMOS</a>
+            <a href="#territorios">TERRITÓRIOS</a>
+            <a href="#participar">PARTICIPAR</a>
+            <a href="#contato">CONTATO</a>
+        </div>
+        <div class="mono" style="opacity: 0.6;">CULTURA VIVA · 2024</div>
+    </nav>
+
+    <section class="hero">
+        <span class="mono hero-tagline">Ponto de Cultura Comunitário</span>
+        <h1>Tecendo novos modos de <i style="font-family: 'Playfair Display'; font-style: italic;">habitar a terra.</i></h1>
+        <p>A continuidade de uma trajetória iniciada em 2014, unindo bioconstrução, agroecologia, arte e ancestralidade para cultivar autonomia e harmonia.</p>
+    </section>
+
+    <section class="container" id="fazemos">
+        <div class="organic-grid">
+            <div class="pillar-card">
+                <svg class="pillar-icon" viewBox="0 0 24 24"><path d="M12,3L2,12H5V20H19V12H22L12,3M12,8.7L16.5,12.7V18H7.5V12.7L12,8.7M12,11.5L9,14.5L10.4,15.9L12,14.3L13.6,15.9L15,14.5L12,11.5Z"/></svg>
+                <h3>Bioconstrução</h3>
+                <p class="mono" style="font-size: 0.65rem;">Manejo Ecológico</p>
+            </div>
+            <div class="pillar-card" style="border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; margin-top: 2rem;">
+                <svg class="pillar-icon" viewBox="0 0 24 24"><path d="M17,8C15.34,8 14,9.34 14,11C14,12.66 15.34,14 17,14C18.66,14 20,12.66 20,11C20,9.34 18.66,8 17,8M7,8C5.34,8 4,9.34 4,11C4,12.66 5.34,14 7,14C8.66,14 10,12.66 10,11C10,9.34 8.66,8 7,8M12,14C10.34,14 9,15.34 9,17C9,18.66 10.34,20 12,20C13.66,20 15,18.66 15,17C15,15.34 13.66,14 12,14Z"/></svg>
+                <h3>Agrofloresta</h3>
+                <p class="mono" style="font-size: 0.65rem;">Sementes Crioulas</p>
+            </div>
+            <div class="pillar-card" style="margin-top: -1rem;">
+                <svg class="pillar-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6L11.45,7.26L10.12,7.45L11.09,8.4L10.86,9.73L12,9.1L13.14,9.73L12.91,8.4L13.88,7.45L12.55,7.26L12,6Z"/></svg>
+                <h3>Ancestralidade</h3>
+                <p class="mono" style="font-size: 0.65rem;">Ritos e Saberes</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="sobre">
+        <h2>Nossa Trajetória</h2>
+        <div class="timeline-flex">
+            <div class="timeline-item">
+                <span class="timeline-year">2014 — 2024</span>
+                <h3>Círculo Vivencial Terra Viva</h3>
+                <p style="opacity: 0.8; margin-top: 1rem;">Uma década em Águas da Prata (SP), erguendo espaços coletivos e experimentando novas formas de organização social em plena Mata Atlântica.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2024 — PRESENTE</span>
+                <h3>Esfera Terra Viva</h3>
+                <p style="opacity: 0.8; margin-top: 1rem;">Transição e expansão. Sistematização de saberes entre o Oeste da Bahia (Estação Flor do Alto) e a nova base em São João da Boa Vista (SP).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="text-align: center;">
+        <span class="mono">Cultura e Comunidade</span>
+        <h2 style="font-size: 3rem; margin-top: 1rem;">Economia Solidária & Criativa</h2>
+        <p style="max-width: 700px; margin: 2rem auto; color: var(--moss-haze);">De cestarias em cipó a sistemas de CSA (Comunidade que Sustenta a Agricultura), nossa produção valoriza o trabalho manual e a troca justa entre quem cultiva e quem consome.</p>
+    </section>
+
+    <div class="participation" id="participar">
+        <div>
+            <h2 style="color: white; margin-bottom: 0.5rem;">Como Participar?</h2>
+            <p style="opacity: 0.9;">Voluntariado, vagas sociais e mutirões abertos.</p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="#" class="btn-organic">Agendar Visita</a>
+            <a href="#" class="btn-organic" style="background: var(--clay-deep); color: white;">Ver Vagas Sociais</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">
+            <h2>Esfera Terra Viva</h2>
+            <p class="mono">São João da Boa Vista, SP</p>
+            <p style="font-size: 0.7rem; margin-top: 1rem; color: var(--moss-haze);">© 2024 — Política Nacional de Cultura Viva</p>
+        </div>
+        <div class="footer-nav">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+            <a href="#">E-mail</a>
+            <a href="#">Imprensa</a>
+            <a href="#">Mídia</a>
+            <a href="#">Privacidade</a>
+        </div>
+    </footer>
+
+    <script>
+        // Subtle parallax/scroll effect for diffusion blob
+        window.addEventListener('scroll', () => {
+            const blob = document.querySelector('.diffusion-blob');
+            const scrolled = window.pageYOffset;
+            blob.style.transform = `translate(${scrolled * 0.05}px, ${scrolled * 0.1}px)`;
+        });
+
+        // Soft reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) rotate(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px) rotate(-2deg)';
+            card.style.transition = 'var(--transition-soft)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
