@@ -11,44 +11,29 @@
       </div>
     </div>
 
-    <div class="posts-grid" ref="gridRef">
-      <div
+    <div class="posts-grid">
+      <a
         v-for="(post, index) in visiblePosts"
         :key="index"
         class="post-card"
+        :href="'https://www.instagram.com/p/' + post.code + '/'"
+        target="_blank"
+        rel="noopener noreferrer"
+        :style="cardStyle(index)"
       >
-        <div class="post-media" :class="'post-type-' + post.type">
+        <div class="post-overlay">
           <div class="post-type-badge">
-            <span v-if="post.type === 'video'">&#9654;</span>
-            <span v-else-if="post.type === 'carousel'">&#9638;</span>
-            <span v-else>&#9679;</span>
+            <svg v-if="post.type === 'video'" viewBox="0 0 24 24" width="16" height="16" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg v-else-if="post.type === 'carousel'" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+            <span v-else class="dot">&#9679;</span>
           </div>
-          <div class="post-media-fallback">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="fallback-icon">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-          <img
-            :src="getMediaPath(post)"
-            :alt="post.caption?.substring(0, 60)"
-            loading="lazy"
-            @error="onImgError"
-          />
+          <div class="post-likes">&#9829; {{ post.likes }}</div>
         </div>
-        <div class="post-body">
-          <p class="post-caption">{{ truncateCaption(post.caption) }}</p>
-          <div class="post-meta">
-            <span class="post-likes">&#9829; {{ post.likes }}</span>
-            <span class="post-date">{{ formatDate(post.takenAt) }}</span>
-          </div>
-        </div>
-      </div>
+      </a>
     </div>
 
     <div class="load-more" v-if="visibleCount < posts.length">
-      <button class="btn-organic" @click="loadMore">Carregar mais publicações</button>
+      <button class="btn-organic" @click="loadMore">Carregar mais</button>
     </div>
   </section>
 </template>
@@ -57,39 +42,31 @@
 import { ref, computed } from 'vue'
 import { postsData, accountInfo } from '../data/posts.js'
 
-function assetPath(path) {
-  const base = import.meta.env.BASE_URL
-  const clean = path.startsWith('/') ? path.slice(1) : path
-  return base + clean
-}
-
 const posts = ref(postsData)
 const account = ref(accountInfo)
-const visibleCount = ref(8)
+const visibleCount = ref(12)
 
 const visiblePosts = computed(() => posts.value.slice(0, visibleCount.value))
 
 const loadMore = () => {
-  visibleCount.value += 8
+  visibleCount.value += 12
 }
 
-const truncateCaption = (caption) => {
-  if (!caption) return ''
-  return caption.length > 120 ? caption.substring(0, 120) + '...' : caption
-}
+const palettes = [
+  ['#4A3728', '#6B705C'],
+  ['#BC6C25', '#E2725B'],
+  ['#2C2C2C', '#4A3728'],
+  ['#6B705C', '#BC6C25'],
+  ['#E2725B', '#BC6C25'],
+  ['#4A3728', '#2C2C2C'],
+]
 
-const formatDate = (timestamp) => {
-  const d = new Date(timestamp)
-  return d.toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })
-}
-
-const getMediaPath = (post) => {
-  const filename = post.file || ''
-  return assetPath('2026-07-04_09-46-10/' + filename)
-}
-
-const onImgError = (e) => {
-  e.target.style.display = 'none'
+const cardStyle = (index) => {
+  const p = palettes[index % palettes.length]
+  const angle = 135 + (index * 45)
+  return {
+    background: `linear-gradient(${angle}deg, ${p[0]}, ${p[1]})`,
+  }
 }
 </script>
 
@@ -132,93 +109,61 @@ const onImgError = (e) => {
 }
 
 .post-card {
-  background: var(--white-bleached);
+  position: relative;
+  aspect-ratio: 1;
   border-radius: 16px;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
   transition: var(--transition-soft);
   border: 1px solid rgba(74, 55, 40, 0.05);
 }
 
 .post-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(74, 55, 40, 0.08);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(74, 55, 40, 0.15);
 }
 
-.post-media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--sand-paper);
-}
-
-.post-media-fallback {
+.post-overlay {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.15;
-  color: var(--moss-haze);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+  opacity: 0;
+  transition: var(--transition-soft);
 }
 
-.fallback-icon {
-  width: 48px;
-  height: 48px;
-}
-
-.post-media img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.post-card:hover .post-media img {
-  transform: scale(1.05);
+.post-card:hover .post-overlay {
+  opacity: 1;
 }
 
 .post-type-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  width: 32px;
-  height: 32px;
+  align-self: flex-end;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  z-index: 2;
-  backdrop-filter: blur(4px);
 }
 
-.post-body {
-  padding: 1rem;
+.dot {
+  color: white;
+  font-size: 0.6rem;
 }
 
-.post-caption {
-  font-size: 0.8rem;
-  color: var(--ink);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.post-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.75rem;
-  font-size: 0.7rem;
-  color: var(--moss-haze);
-  font-family: 'JetBrains Mono', monospace;
+.post-likes {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 .load-more {
@@ -236,6 +181,6 @@ const onImgError = (e) => {
 }
 
 @media (max-width: 500px) {
-  .posts-grid { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
 }
 </style>
