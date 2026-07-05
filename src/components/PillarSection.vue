@@ -1,7 +1,7 @@
 <template>
   <section class="pillars-wrap" id="fazemos">
     <div class="container">
-      <div class="section-label">
+      <div class="section-label reveal">
         <span class="mono">Eixos de Atuação</span>
         <h2>O Que Fazemos</h2>
       </div>
@@ -11,10 +11,14 @@
           v-for="(pillar, index) in pillars"
           :key="index"
           class="pillar-card"
-          :style="{ borderRadius: pillar.radius }"
+          :class="'reveal reveal-delay-' + (index + 1)"
+          :style="{ '--radius': pillar.radius }"
           ref="cards"
         >
-          <svg class="pillar-icon" viewBox="0 0 24 24"><path :d="pillar.icon"/></svg>
+          <div class="pillar-glow"></div>
+          <div class="pillar-icon-wrap">
+            <svg class="pillar-icon" viewBox="0 0 24 24"><path :d="pillar.icon"/></svg>
+          </div>
           <h3>{{ pillar.title }}</h3>
           <p class="mono pillar-sub">{{ pillar.subtitle }}</p>
           <p class="pillar-desc">{{ pillar.description }}</p>
@@ -62,33 +66,18 @@ onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1'
-        entry.target.style.transform = 'translateY(0) rotate(0)'
+        entry.target.classList.add('visible')
       }
     })
-  }, { threshold: 0.1 })
+  }, { threshold: 0.08 })
 
-  cards.value.forEach(card => {
-    card.style.opacity = '0'
-    card.style.transform = 'translateY(40px) rotate(-2deg)'
-    card.style.transition = 'var(--transition-soft)'
-    observer.observe(card)
-  })
+  cards.value?.forEach(card => observer.observe(card))
 })
 </script>
 
 <style scoped>
 .pillars-wrap {
   margin-top: 2rem;
-}
-
-.section-label {
-  margin-bottom: 4rem;
-}
-
-.section-label h2 {
-  font-size: 3rem;
-  margin-top: 0.5rem;
 }
 
 .organic-grid {
@@ -99,22 +88,63 @@ onMounted(() => {
 
 .pillar-card {
   grid-column: span 4;
-  background: var(--white-bleached);
-  padding: 3rem 2rem;
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  background: rgba(255, 251, 242, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius);
   transition: var(--transition-soft);
-  border: 1px solid rgba(74, 55, 40, 0.05);
+  border: 1px solid rgba(74, 55, 40, 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   cursor: default;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.pillar-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(226, 114, 91, 0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
 }
 
 .pillar-card:hover {
-  transform: translateY(-10px) rotate(2deg);
-  background: var(--sand-paper);
-  box-shadow: 0 30px 60px rgba(74, 55, 40, 0.08);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: rgba(226, 114, 91, 0.15);
+  background: rgba(255, 251, 242, 0.95);
+}
+
+.pillar-card:hover .pillar-glow {
+  opacity: 1;
+}
+
+.pillar-icon-wrap {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(226, 114, 91, 0.08), rgba(188, 108, 37, 0.08));
+  transition: var(--transition-soft);
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.pillar-card:hover .pillar-icon-wrap {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, rgba(226, 114, 91, 0.15), rgba(188, 108, 37, 0.15));
 }
 
 .pillar-card h3 {
@@ -126,6 +156,10 @@ onMounted(() => {
   font-size: 0.65rem;
   margin-bottom: 1.25rem;
   display: block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  background: rgba(74, 55, 40, 0.04);
+  backdrop-filter: blur(2px);
 }
 
 .pillar-desc {
@@ -135,18 +169,17 @@ onMounted(() => {
 }
 
 .pillar-icon {
-  width: 60px;
-  height: 60px;
+  width: 32px;
+  height: 32px;
   fill: var(--terracotta);
   opacity: 0.8;
 }
 
 @media (max-width: 900px) {
   .pillar-card { grid-column: span 6; }
-  .section-label h2 { font-size: 2.25rem; }
 }
 
 @media (max-width: 600px) {
-  .pillar-card { grid-column: span 12; }
+  .pillar-card { grid-column: span 12; padding: 2.5rem 1.5rem; }
 }
 </style>

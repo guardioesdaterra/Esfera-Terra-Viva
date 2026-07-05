@@ -2,12 +2,26 @@
   <footer id="contato">
     <div class="footer-main">
       <div class="footer-brand">
-        <h2>Esfera Terra Viva</h2>
-        <p class="mono">São João da Boa Vista, SP</p>
+        <h2>
+          <span class="logo-mark">ETV</span>
+          Esfera Terra Viva
+        </h2>
+        <p class="mono footer-locale">São João da Boa Vista, SP</p>
         <p class="footer-tagline">Ponto de Cultura Comunitário — Cultura Viva</p>
         <div class="footer-contact">
           <p><strong>E-mail:</strong> contato@esferaterraviva.org</p>
           <p><strong>Instagram:</strong> @esferaterraviva</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/esferaterraviva" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="#" aria-label="E-mail">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-links">
@@ -52,7 +66,7 @@ const faqItems = faq.footer
 <style scoped>
 footer {
   background: var(--white-bleached);
-  border-top: 1px solid rgba(74, 55, 40, 0.1);
+  border-top: 1px solid rgba(74, 55, 40, 0.08);
   padding: 4rem 8% 2rem;
 }
 
@@ -64,9 +78,30 @@ footer {
 }
 
 .footer-brand h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clay-deep);
+  color: var(--sand-paper);
+  border-radius: 6px;
+}
+
+.footer-locale {
+  font-size: 0.6rem;
 }
 
 .footer-tagline {
@@ -80,6 +115,30 @@ footer {
   font-size: 0.8rem;
   margin-bottom: 0.25rem;
   color: var(--ink);
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(74, 55, 40, 0.05);
+  color: var(--moss-haze);
+  transition: var(--transition-fast);
+}
+
+.footer-social a:hover {
+  background: var(--terracotta);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .footer-links h4 {
@@ -97,17 +156,34 @@ footer {
   color: var(--moss-haze);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
-  transition: var(--transition-soft);
+  transition: var(--transition-fast);
+  position: relative;
+  width: fit-content;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--terracotta);
+  transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
   color: var(--terracotta);
 }
 
+.footer-links a:hover::after {
+  width: 100%;
+}
+
 .footer-bottom {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(74, 55, 40, 0.08);
+  border-top: 1px solid rgba(74, 55, 40, 0.06);
   text-align: center;
   font-size: 0.75rem;
   color: var(--moss-haze);
@@ -120,5 +196,9 @@ footer {
 
 @media (max-width: 900px) {
   .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+@media (max-width: 600px) {
+  .footer-main { grid-template-columns: 1fr; }
 }
 </style>
