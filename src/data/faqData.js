@@ -2,7 +2,7 @@ export const faq = {
   hero: [
     {
       q: "O que é o Esfera Terra Viva?",
-      a: "O Esfera Terra Viva é a continuidade de uma trajetória iniciada em 2014 com o Círculo Vivencial Terra Viva, hoje em transição para uma nova fase de sistematização e multiplicação de saberes em diferentes grupos e territórios. Atua como Ponto de Cultura Comunitário — CULTSP Cult Lovers — integrando bioconstrução, agroecologia, arte e ancestralidade, alinhado à Política Nacional de Cultura Viva (PNCV)."
+      a: "O Esfera Terra Viva é a continuidade de uma trajetória iniciada em 2014 com o Círculo Vivencial Terra Viva, hoje em transição para uma nova fase de sistematização e multiplicação de saberes em diferentes grupos e territórios. Atua como Ponto de Cultura Comunitário — CULTSP — integrando bioconstrução, agroecologia, arte e ancestralidade, alinhado à Política Nacional de Cultura Viva (PNCV)."
     },
     {
       q: "O que é um Ponto de Cultura?",

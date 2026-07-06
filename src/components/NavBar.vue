@@ -15,7 +15,7 @@
     </div>
 
     <div class="nav-right">
-      <span class="mono tagline">CULTSP CULT LOVERS · 2024</span>
+      <span class="mono tagline">CULTSP · 2024</span>
       <button class="hamburger" :class="{ active: isOpen }" @click="toggleMenu" aria-label="Menu">
         <span></span>
         <span></span>
