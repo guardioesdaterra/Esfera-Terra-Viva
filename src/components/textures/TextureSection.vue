@@ -1,16 +1,11 @@
 <template>
-  <div class="texture-section" :style="sectionStyle">
-    <div
-      class="texture-section-overlay"
-      :class="{ 'texture-animated': animated }"
-      :style="textureStyle"
-    ></div>
+  <div class="texture-section" :style="{ position: 'relative' }">
+    <div class="texture-section-overlay" :style="[textureStyle, { zIndex: zIndex || 0 }]"></div>
     <slot />
   </div>
 </template>
 
 <script setup>
-import { computed, useAttrs } from 'vue'
 import { useTexture } from '../../composables/useTexture.js'
 
 const props = defineProps({
@@ -18,17 +13,18 @@ const props = defineProps({
   opacity: { type: Number, default: 0.045 },
   blendMode: { type: String, default: null },
   scale: { type: Number, default: 1 },
-  intensity: { type: Number, default: 1 },
+  intensity: { type: Number, default: 0.08 },
   color: { type: String, default: null },
   color2: { type: String, default: null },
   color3: { type: String, default: null },
-  animated: { type: Boolean, default: false },
-  animationType: { type: String, default: 'grainShift' },
   grid: { type: Number, default: null },
   stroke: { type: Number, default: null },
   radius: { type: Number, default: null },
   frequency: { type: [String, Number], default: null },
   octaves: { type: Number, default: null },
+  space: { type: Number, default: null },
+  angle: { type: Number, default: null },
+  inner: { type: Number, default: null },
   zIndex: { type: Number, default: 0 },
   disabled: { type: Boolean, default: false },
 })
@@ -42,23 +38,19 @@ const { style: textureStyle } = useTexture({
   color: props.color,
   color2: props.color2,
   color3: props.color3,
-  animated: false,
   grid: props.grid,
   stroke: props.stroke,
   radius: props.radius,
   frequency: props.frequency,
   octaves: props.octaves,
+  space: props.space,
+  angle: props.angle,
+  inner: props.inner,
 })
-
-const sectionStyle = computed(() => ({
-  position: 'relative',
-}))
 </script>
 
 <style scoped>
-.texture-section {
-  position: relative;
-}
+.texture-section { position: relative; }
 
 .texture-section-overlay {
   position: absolute;
@@ -68,11 +60,6 @@ const sectionStyle = computed(() => ({
   height: 100%;
   pointer-events: none;
   contain: paint;
-  z-index: 0;
-}
-
-.texture-section-overlay.texture-animated {
-  will-change: opacity;
 }
 
 .texture-section > :deep(*) {
