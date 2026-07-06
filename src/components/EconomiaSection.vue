@@ -1,5 +1,6 @@
 <template>
-  <section class="container economia-section" id="territorios">
+  <TextureSection type="honeycomb" :opacity="0.04" blend-mode="multiply" color="#BC6C25" :stroke="0.5" :grid="48">
+    <section class="container economia-section" id="territorios">
     <div class="reveal">
       <span class="mono">Economia Solidária & Criativa</span>
       <h2>Economia Solidária & Criativa</h2>
@@ -21,9 +22,11 @@
 
     <FaqAccordion :items="faqItems" title="Dúvidas sobre Economia Solidária" />
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 

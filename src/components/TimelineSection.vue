@@ -1,5 +1,6 @@
 <template>
-  <section class="timeline-section" id="sobre">
+  <TextureSection type="crosshatch" :opacity="0.035" blend-mode="soft-light" color="#F4EBD9" :stroke="0.8">
+    <section class="timeline-section" id="sobre">
     <div class="timeline-inner">
       <div class="timeline-header reveal">
         <h2>Nossa Trajetória</h2>
@@ -25,10 +26,12 @@
       <FaqAccordion :items="faqItems" title="Dúvidas sobre Nossa História" />
     </div>
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 

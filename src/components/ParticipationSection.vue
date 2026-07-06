@@ -1,5 +1,6 @@
 <template>
-  <section id="participar">
+  <TextureSection type="zigzag" :opacity="0.02" blend-mode="multiply" color="#4A3728" :stroke="0.8">
+    <section id="participar">
     <div class="container participation-intro">
       <div class="reveal">
         <span class="mono">Envolva-se</span>
@@ -31,9 +32,11 @@
       <FaqAccordion :items="faqItems" title="Dúvidas sobre Participação" />
     </div>
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 

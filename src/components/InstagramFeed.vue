@@ -1,5 +1,6 @@
 <template>
-  <section class="container instagram-section">
+  <TextureSection type="canvas" :opacity="0.035" blend-mode="multiply" color="#6B705C" :stroke="0.5">
+    <section class="container instagram-section">
     <div class="reveal">
       <span class="mono">@esferaterraviva</span>
       <h2>Últimas Publicações</h2>
@@ -81,9 +82,11 @@
       </div>
     </Teleport>
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
+import TextureSection from './textures/TextureSection.vue'
 import { ref, computed, watch } from 'vue'
 import { postsData, accountInfo } from '../data/posts.js'
 import { assetPath } from '../utils/paths.js'

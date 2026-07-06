@@ -1,5 +1,6 @@
 <template>
   <nav :class="{ compact: compact, open: isOpen }">
+    <TextureOverlay type="paper" :opacity="0.3" blend-mode="multiply" position="absolute" :z-index="-1" />
     <a href="#" class="logo">
       <span class="logo-mark">ETV</span>
       <span class="logo-text">Esfera Terra Viva</span>
@@ -28,6 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import TextureOverlay from './textures/TextureOverlay.vue'
 
 const props = defineProps({
   compact: { type: Boolean, default: false }

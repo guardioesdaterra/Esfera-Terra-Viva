@@ -1,5 +1,6 @@
 <template>
-  <section class="pillars-wrap" id="fazemos">
+  <TextureSection type="woven" :opacity="0.04" blend-mode="multiply" color="#4A3728" :stroke="1.5">
+    <section class="pillars-wrap" id="fazemos">
     <div class="container">
       <div class="section-label reveal">
         <span class="mono">Eixos de Atuação</span>
@@ -28,10 +29,12 @@
       <FaqAccordion :items="faqItems" title="Dúvidas sobre Nossas Atividades" />
     </div>
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 

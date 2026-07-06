@@ -1,5 +1,6 @@
 <template>
-  <section class="hero" id="topo">
+  <TextureSection type="dots" :opacity="0.028" blend-mode="soft-light" color="#4A3728" :radius="2" :grid="40">
+    <section class="hero" id="topo">
     <div class="hero-bg" ref="bg">
       <div
         v-for="img in heroImages"
@@ -49,9 +50,11 @@
       </div>
     </div>
   </section>
+  </TextureSection>
 </template>
 
 <script setup>
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 import { ref, onMounted, onUnmounted } from 'vue'

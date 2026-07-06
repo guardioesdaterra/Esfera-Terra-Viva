@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <div class="grain-overlay"></div>
-    <div class="paper-texture"></div>
-    <div class="vintage-overlay"></div>
+    <TextureOverlay type="noise" :opacity="0.045" :zIndex="9999" animated />
+    <TextureOverlay type="paper" :opacity="0.25" blend-mode="multiply" :zIndex="9998" />
+    <TextureOverlay type="vintage" :opacity="1" :zIndex="9997" />
+    <TextureOverlay type="dust" :opacity="0.02" :zIndex="9996" />
+    <TextureOverlay type="crosshatch" :opacity="0.04" blend-mode="multiply" :zIndex="9995" color="#4A3728" :stroke="0.5" />
     <div class="diffusion-blob" ref="blob"></div>
     <div class="scroll-progress" ref="progress"></div>
 
@@ -19,6 +21,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import TextureOverlay from './components/textures/TextureOverlay.vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import PillarSection from './components/PillarSection.vue'

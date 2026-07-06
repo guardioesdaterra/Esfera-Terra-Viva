@@ -1,5 +1,6 @@
 <template>
-  <footer id="contato">
+  <TextureSection type="dots" :opacity="0.04" blend-mode="multiply" color="#BC6C25" :radius="2" :grid="36">
+    <footer id="contato">
     <div class="footer-main">
       <div class="footer-brand">
         <h2>
@@ -55,9 +56,11 @@
       <p class="mono">Feito com cuidado, terra e comunidade.</p>
     </div>
   </footer>
+  </TextureSection>
 </template>
 
 <script setup>
+import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 
