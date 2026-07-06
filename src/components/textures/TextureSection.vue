@@ -1,7 +1,7 @@
 <template>
   <div class="texture-section" :style="{ position: 'relative' }">
-    <div class="texture-section-overlay" :style="[textureStyle, { zIndex: zIndex || 0 }]"></div>
     <slot />
+    <div class="texture-section-overlay" :style="textureStyle"></div>
   </div>
 </template>
 
@@ -25,7 +25,6 @@ const props = defineProps({
   space: { type: Number, default: null },
   angle: { type: Number, default: null },
   inner: { type: Number, default: null },
-  zIndex: { type: Number, default: 0 },
   disabled: { type: Boolean, default: false },
 })
 
@@ -50,7 +49,9 @@ const { style: textureStyle } = useTexture({
 </script>
 
 <style scoped>
-.texture-section { position: relative; }
+.texture-section {
+  position: relative;
+}
 
 .texture-section-overlay {
   position: absolute;
@@ -60,10 +61,6 @@ const { style: textureStyle } = useTexture({
   height: 100%;
   pointer-events: none;
   contain: paint;
-}
-
-.texture-section > :deep(*) {
-  position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 </style>

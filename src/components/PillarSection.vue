@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="canvas" :opacity="0.06" blend-mode="multiply" color="#4A3728">
+  <TextureSection type="canvas" :opacity="0.1" blend-mode="multiply" color="#4A3728">
     <section class="pillars-wrap" id="fazemos">
     <div class="container">
       <div class="section-label reveal">
@@ -16,7 +16,7 @@
           :style="{ '--radius': pillar.radius }"
           ref="cards"
         >
-          <div class="pillar-glow"></div>
+          <div class="pillar-glow" style="overflow:hidden"></div>
           <div class="pillar-icon-wrap">
             <svg class="pillar-icon" viewBox="0 0 24 24"><path :d="pillar.icon"/></svg>
           </div>
@@ -110,7 +110,6 @@ onUnmounted(() => {
   text-align: center;
   cursor: default;
   position: relative;
-  overflow: hidden;
   transform-style: preserve-3d;
   perspective: 800px;
 }

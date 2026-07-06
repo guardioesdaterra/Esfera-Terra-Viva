@@ -1,10 +1,10 @@
 <template>
   <div class="app">
-    <TextureOverlay type="noise" :opacity="0.05" :zIndex="9999" />
-    <TextureOverlay type="paper" :opacity="0.3" blend-mode="multiply" :zIndex="9998" />
+    <TextureOverlay type="noise" :opacity="0.065" :zIndex="9999" />
+    <TextureOverlay type="paper" :opacity="0.35" blend-mode="multiply" :zIndex="9998" />
     <TextureOverlay type="vintage" :opacity="1" :zIndex="9997" />
-    <TextureOverlay type="dust" :opacity="0.025" :zIndex="9996" />
-    <TextureOverlay type="crosshatch" :opacity="0.05" blend-mode="multiply" :zIndex="9995" color="#4A3728" :stroke="0.5" />
+    <TextureOverlay type="dust" :opacity="0.035" :zIndex="9996" />
+    <TextureOverlay type="crosshatch" :opacity="0.06" blend-mode="multiply" :zIndex="9995" color="#4A3728" :stroke="0.5" />
     <div class="diffusion-blob" ref="blob"></div>
     <div class="scroll-progress" ref="progress"></div>
 

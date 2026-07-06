@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="sand" :opacity="0.04" blend-mode="multiply" :intensity="0.06">
+  <TextureSection type="sand" :opacity="0.1" blend-mode="multiply" :intensity="0.06">
     <section class="hero" id="topo">
     <div class="hero-bg" ref="bg">
       <div

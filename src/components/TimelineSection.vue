@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="concrete" :opacity="0.06" blend-mode="soft-light" :intensity="0.08" color="#F4EBD9">
+  <TextureSection type="concrete" :opacity="0.12" blend-mode="soft-light" :intensity="0.08" color="#F4EBD9">
     <section class="timeline-section" id="sobre">
     <div class="timeline-inner">
       <div class="timeline-header reveal">

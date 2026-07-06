@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="basket" :opacity="0.04" blend-mode="multiply" color="#4A3728">
+  <TextureSection type="basket" :opacity="0.08" blend-mode="multiply" color="#4A3728">
     <section id="participar">
     <div class="container participation-intro">
       <div class="reveal">

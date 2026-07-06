@@ -1,7 +1,8 @@
 import { computed, reactive } from 'vue'
 
 function svg(s) {
-  return `url("data:image/svg+xml,${encodeURIComponent(s.replace(/\s+/g, ' '))}")`
+  const withXmlns = s.includes('xmlns=') ? s : s.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"')
+  return `url("data:image/svg+xml,${encodeURIComponent(withXmlns.replace(/\s+/g, ' '))}")`
 }
 
 function sz(v, s) { return (v || s) * (arguments[2] || 1) }
