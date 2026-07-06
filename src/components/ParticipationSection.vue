@@ -4,7 +4,7 @@
       <div class="reveal">
         <span class="mono">Envolva-se</span>
         <h2>Como Participar?</h2>
-        <p class="participation-sub">O projeto é construído coletivamente e está sempre aberto a novas pessoas. Existem diversas formas de se envolver, do voluntariado às vagas sociais.</p>
+        <p class="participation-sub">O projeto é construído coletivamente e acolhe pessoas de todas as origens, crenças, idades e condições socioeconômicas. Existem diversas formas de se envolver, do voluntariado às vagas sociais.</p>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
       <div class="banner-glow"></div>
       <div class="banner-noise"></div>
       <h3>Quem pode participar?</h3>
-      <p>O projeto acolhe pessoas de todas as origens, crenças, idades e condições socioeconômicas. Jovens, famílias, crianças, idosos, mães solo, pessoas neurodivergentes — todas são bem-vindas. A diversidade é o que fortalece nossa comunidade.</p>
+      <p>O projeto acolhe pessoas de todas as origens, crenças, idades e condições socioeconômicas — jovens, famílias, crianças, idosos, mães solo, pessoas neurodivergentes, pessoas de diferentes tradições e nacionalidades, sem qualquer forma de discriminação. A diversidade é o que fortalece nossa comunidade.</p>
     </div>
 
     <div class="container">
@@ -53,8 +53,8 @@ const participationItems = [
     icon: '<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--terracotta)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>'
   },
   {
-    title: 'Mutirões Abertos',
-    description: 'Atividades gratuitas realizadas com frequência mínima mensal: mutirões agroflorestais, ações de bioconstrução e rodas de conversa com lanche compartilhado. Também realizamos visitas individuais e coletivas mediante agendamento.',
+    title: 'Mutirões e Atividades Abertas',
+    description: 'Atividades gratuitas realizadas com frequência mínima mensal: mutirões agroflorestais, ações de bioconstrução, rodas de música e conversa com lanche compartilhado. O espaço também permanece disponível para visitas individuais e coletivas mediante agendamento, recebendo escolas e projetos da região.',
     cta: 'Ver Próximo Mutirão',
     icon: '<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--terracotta)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
   }

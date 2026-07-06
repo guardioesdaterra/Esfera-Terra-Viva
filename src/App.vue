@@ -6,7 +6,7 @@
     <div class="diffusion-blob" ref="blob"></div>
     <div class="scroll-progress" ref="progress"></div>
 
-    <NavBar />
+    <NavBar :compact="isCompact" />
     <HeroSection />
     <PillarSection />
     <TimelineSection />
@@ -28,35 +28,52 @@ import InstagramFeed from './components/InstagramFeed.vue'
 import ParticipationSection from './components/ParticipationSection.vue'
 import FooterSection from './components/FooterSection.vue'
 
+const isCompact = ref(false)
 const blob = ref(null)
 const progress = ref(null)
 let rafId = null
+let revealObserver = null
 
 const handleScroll = () => {
   if (rafId) return
   rafId = requestAnimationFrame(() => {
-    const scrolled = window.pageYOffset
+    const y = window.pageYOffset
     const docHeight = document.documentElement.scrollHeight - window.innerHeight
-    const progressPct = docHeight > 0 ? (scrolled / docHeight) * 100 : 0
+
+    isCompact.value = y > 80
 
     if (progress.value) {
-      progress.value.style.transform = `scaleX(${progressPct / 100})`
+      const pct = docHeight > 0 ? (y / docHeight) * 100 : 0
+      progress.value.style.transform = `scaleX(${pct / 100})`
     }
 
     if (blob.value) {
-      const moveX = scrolled * 0.025
-      const moveY = scrolled * 0.06
-      blob.value.style.transform = `translate(${moveX}px, ${moveY}px)`
+      blob.value.style.transform = `translate(${y * 0.025}px, ${y * 0.06}px)`
     }
 
     rafId = null
   })
 }
 
-onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true }))
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        revealObserver.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.08 })
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+})
+
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   if (rafId) cancelAnimationFrame(rafId)
+  if (revealObserver) revealObserver.disconnect()
 })
 </script>
 

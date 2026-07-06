@@ -1,18 +1,17 @@
 <template>
   <section class="timeline-section" id="sobre">
     <div class="timeline-inner">
-      <div class="reveal">
+      <div class="timeline-header reveal">
         <h2>Nossa Trajetória</h2>
-        <p class="timeline-intro">De 2014 a 2024, o projeto construiu uma história de aprendizado coletivo, parcerias e transformação. Conheça os marcos dessa caminhada.</p>
+        <p class="timeline-intro">De janeiro de 2014 a julho de 2024, o Ponto de Cultura consolidou-se como espaço de referência na difusão de técnicas ancestrais e tradicionais. Conheça os marcos dessa caminhada de aprendizado coletivo, parcerias e transformação.</p>
       </div>
 
-      <div class="timeline-track">
-        <div class="timeline-line" ref="line"></div>
+      <div class="timeline-track" ref="trackRef">
+        <div class="timeline-line"></div>
         <div
           v-for="(item, index) in timelineItems"
           :key="index"
           class="timeline-item"
-          :class="['reveal', 'reveal-delay-' + (index + 1)]"
         >
           <div class="timeline-dot"></div>
           <div class="timeline-card">
@@ -29,33 +28,57 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 
 const faqItems = faq.timeline
+const trackRef = ref(null)
+let timeObserver = null
 
 const timelineItems = [
   {
     year: '2014 — 2016',
     title: 'Fundação e Primeiras Ações',
-    description: 'Janeiro de 2014: início do Círculo Vivencial Terra Viva na Fazenda São Miguel Arcanjo, zona rural de Águas da Prata (SP). Bioconstrução integral do espaço e do interposto urbano para venda de orgânicos e artesanato. Em 2016, coordenação do projeto de bioconstrução de uma casa de brincar em escola pública de Poços de Caldas (MG).'
+    description: 'Janeiro de 2014: início do Círculo Vivencial Terra Viva na Fazenda São Miguel Arcanjo, zona rural de Águas da Prata (SP). O espaço foi integralmente bioconstruído com técnicas de taipa, bambu, adobe, captação natural de água e biodigestores, sem utilização de energia elétrica. Estruturas coletivas como cozinhas, ateliês, banheiros e hortas. Em 2016, coordenação de projeto de bioconstrução de casa de brincar em escola pública de Poços de Caldas (MG).'
   },
   {
     year: '2015 — 2019',
     title: 'Visibilidade e Intercâmbios',
-    description: 'Participação no programa Terra da Gente (2015). Parceria CSA com coletivo de Poços de Caldas (2018), fornecendo 15 cestas orgânicas semanais. Matéria na Revista Atua (2019). Visita do povo indígena Kanela (2019) com rodas de conversa e feira de artesanato. Participação na Semana pelo Clima (2019) com o coletivo Guardiões da Terra.'
+    description: 'Participação no programa Terra da Gente (2015) e G1 Globo. Matéria na Revista Atua (2019). Visita do povo indígena Kanela (2019) com rodas de conversa e feira de artesanato, fortalecendo o intercâmbio intercultural. Participação na Semana pelo Clima (2019) com o Ponto de Cultura Guardiões da Terra. Parceria CSA com coletivo de Poços de Caldas (2018), fornecendo 15 cestas orgânicas semanais.'
   },
   {
     year: '2020 — 2024',
     title: 'Formação e Expansão',
-    description: 'Ações formativas com abordagens humanistas e integrativas. Programa Jardim Brincante (2020) com atividades infantis semanais, desdobrando-se em acampamentos com famílias. Imersão online com Susana Verri (ALC Nature). Coordenação da bioconstrução de uma casa em Ipuiúna (MG, 2022) com o coletivo Montanha que Chora.'
+    description: 'Ações formativas com abordagens humanistas e integrativas. Programa Jardim Brincante (2020) com atividades infantis semanais, desdobrando-se em acampamentos com famílias. Imersão online com Susana Verri (ALC Nature). Coordenação da bioconstrução de casa em Ipuiúna (MG, 2022) com o coletivo Montanha que Chora. Ações socioeducativas em escolas públicas da região.'
   },
   {
     year: '2024 — PRESENTE',
     title: 'Esfera Terra Viva',
-    description: 'Julho de 2024: encerramento do arrendamento e transição para o Esfera Terra Viva. Atuação no Oeste da Bahia (Estação Flor do Alto) apoiando uma comunidade intencional. Nova base em São João da Boa Vista (SP), já recebendo mutirões e atividades integrativas. Sistematização e multiplicação dos saberes acumulados.'
+    description: 'Julho de 2024: encerramento do arrendamento e transição para o Esfera Terra Viva. Atuação no Oeste da Bahia (Estação Flor do Alto) apoiando comunidade intencional e compartilhando metodologias e tecnologias sociais. Nova base em São João da Boa Vista (SP), recebendo mutirões e atividades integrativas. Sistematização e multiplicação dos saberes acumulados.'
   }
 ]
+
+onMounted(() => {
+  const header = trackRef.value?.closest('.timeline-inner')?.querySelector('.reveal')
+  const items = trackRef.value?.querySelectorAll('.timeline-item')
+  if (!items?.length) return
+
+  timeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      }
+    })
+  }, { threshold: 0.15 })
+
+  if (header) timeObserver.observe(header)
+  items.forEach(item => timeObserver.observe(item))
+})
+
+onUnmounted(() => {
+  if (timeObserver) timeObserver.disconnect()
+})
 </script>
 
 <style scoped>
@@ -127,22 +150,25 @@ const timelineItems = [
   bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, var(--ochre-sun), var(--terracotta));
-  transform: scaleY(0);
-  transform-origin: top;
-  animation: growLine 1.5s ease forwards;
-  animation-timeline: view();
-  animation-range: entry 0% entry 60%;
-}
-
-@keyframes growLine {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
 }
 
 .timeline-item {
   position: relative;
   padding: 0 0 3rem 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(2) { transition-delay: 0.12s; }
+.timeline-item:nth-child(3) { transition-delay: 0.24s; }
+.timeline-item:nth-child(4) { transition-delay: 0.36s; }
+.timeline-item:nth-child(5) { transition-delay: 0.48s; }
 
 .timeline-item:last-child {
   padding-bottom: 0;

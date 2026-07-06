@@ -1,5 +1,5 @@
 <template>
-  <nav ref="nav" :class="{ compact: isCompact, open: isOpen }">
+  <nav :class="{ compact: compact, open: isOpen }">
     <a href="#" class="logo">
       <span class="logo-mark">ETV</span>
       <span class="logo-text">Esfera Terra Viva</span>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="nav-right">
-      <span class="mono tagline">CULTURA VIVA · 2024</span>
+      <span class="mono tagline">CULTSP CULT LOVERS · 2024</span>
       <button class="hamburger" :class="{ active: isOpen }" @click="toggleMenu" aria-label="Menu">
         <span></span>
         <span></span>
@@ -27,29 +27,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
-const nav = ref(null)
-const isCompact = ref(false)
+const props = defineProps({
+  compact: { type: Boolean, default: false }
+})
+
 const isOpen = ref(false)
 
 const toggleMenu = () => { isOpen.value = !isOpen.value }
 const closeMenu = () => { isOpen.value = false }
-
-let tickId = null
-const onScroll = () => {
-  if (tickId) return
-  tickId = requestAnimationFrame(() => {
-    isCompact.value = window.pageYOffset > 80
-    tickId = null
-  })
-}
-
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-  if (tickId) cancelAnimationFrame(tickId)
-})
 </script>
 
 <style scoped>

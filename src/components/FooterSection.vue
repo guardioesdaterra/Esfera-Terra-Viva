@@ -7,7 +7,7 @@
           Esfera Terra Viva
         </h2>
         <p class="mono footer-locale">São João da Boa Vista, SP</p>
-        <p class="footer-tagline">Ponto de Cultura Comunitário — Cultura Viva</p>
+        <p class="footer-tagline">CULTSP Cult Lovers — Ponto de Cultura Comunitário</p>
         <div class="footer-contact">
           <p><strong>E-mail:</strong> contato@esferaterraviva.org</p>
           <p><strong>Instagram:</strong> @esferaterraviva</p>
@@ -43,6 +43,7 @@
         <a href="#">Guardiões da Terra</a>
         <a href="#">Montanha que Chora</a>
         <a href="#">Estação Flor do Alto</a>
+        <a href="#">ALC Nature</a>
         <a href="#">Rede Cultura Viva</a>
       </div>
     </div>
@@ -50,7 +51,7 @@
     <FaqAccordion :items="faqItems" title="Dúvidas Gerais" />
 
     <div class="footer-bottom">
-      <p>© 2024 Esfera Terra Viva — Alinhado à Política Nacional de Cultura Viva (PNCV)</p>
+      <p>© 2024 Esfera Terra Viva — CULTSP Cult Lovers — Alinhado à PNCV</p>
       <p class="mono">Feito com cuidado, terra e comunidade.</p>
     </div>
   </footer>

@@ -10,28 +10,43 @@
     </div>
     <div class="hero-fog"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="mono hero-tagline reveal visible">Ponto de Cultura Comunitário</span>
-      <h1 class="reveal visible">
-        Tecendo novos modos de <i>habitar a terra.</i>
-      </h1>
-      <p class="reveal visible reveal-delay-1">Uma década (2014–2024) no Círculo Vivencial Terra Viva em Águas da Prata (SP) e a transição para o Esfera Terra Viva — sistematizando e multiplicando saberes em bioconstrução, agroecologia, arte e ancestralidade.</p>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="mono hero-tagline reveal visible">CULTSP Cult Lovers — Ponto de Cultura</span>
+        <h1 class="reveal visible">
+          Tecendo novos modos de <i>habitar a terra.</i>
+        </h1>
+        <p class="reveal visible reveal-delay-1">De janeiro de 2014 a julho de 2024, o Ponto de Cultura operou no Círculo Vivencial Terra Viva, em Águas da Prata (SP) — integralmente bioconstruído, sem energia elétrica, com técnicas ancestrais de permacultura. Agora, como Esfera Terra Viva, sistematiza e multiplica saberes em bioconstrução, agroecologia, arte e ancestralidade.</p>
 
-      <div class="hero-highlights">
-        <div class="highlight-item reveal visible" v-for="(stat, i) in stats" :key="i" :style="{ transitionDelay: (0.2 + i * 0.12) + 's' }">
-          <span class="highlight-num">{{ stat.num }}</span>
-          <span class="highlight-label">{{ stat.label }}</span>
+        <div class="hero-highlights">
+          <div class="highlight-item reveal visible" v-for="(stat, i) in stats" :key="i" :style="{ transitionDelay: (0.2 + i * 0.12) + 's' }">
+            <span class="highlight-num">{{ stat.num }}</span>
+            <span class="highlight-label">{{ stat.label }}</span>
+          </div>
+        </div>
+
+        <div class="hero-cta reveal visible reveal-delay-3">
+          <a href="#fazemos" class="btn-organic">
+            <span>Explorar</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <FaqAccordion :items="faqItems" title="Sobre o Projeto" />
+      </div>
+
+      <div class="hero-visual reveal visible">
+        <div class="hero-bubble-outer">
+          <div class="hero-bubble-soft"></div>
+          <div
+            v-for="(img, i) in heroImages"
+            :key="img"
+            class="hero-bubble-slide"
+            :class="{ active: activeSlide === i }"
+            :style="{ backgroundImage: 'url(' + img + ')' }"
+          ></div>
         </div>
       </div>
-
-      <div class="hero-cta reveal visible reveal-delay-3">
-        <a href="#fazemos" class="btn-organic">
-          <span>Explorar</span>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <FaqAccordion :items="faqItems" title="Sobre o Projeto" />
     </div>
   </section>
 </template>
@@ -40,12 +55,7 @@
 import FaqAccordion from './FaqAccordion.vue'
 import { faq } from '../data/faqData.js'
 import { ref, onMounted, onUnmounted } from 'vue'
-
-function assetPath(path) {
-  const base = import.meta.env.BASE_URL
-  const clean = path.startsWith('/') ? path.slice(1) : path
-  return base + clean
-}
+import { assetPath } from '../utils/paths.js'
 
 const heroImages = [
   assetPath('images/hero-1.webp'),
@@ -54,15 +64,22 @@ const heroImages = [
 ]
 
 const faqItems = faq.hero
+const activeSlide = ref(0)
+let slideInterval = null
 
 const stats = [
   { num: '10+', label: 'anos de trajetória' },
-  { num: '50+', label: 'voluntários acolhidos' },
+  { num: '50+', label: 'bioconstruções realizadas' },
   { num: '329', label: 'publicações no Instagram' }
 ]
 
 const bg = ref(null)
 let rafId = null
+
+const advanceSlide = () => {
+  if (document.hidden) return
+  activeSlide.value = (activeSlide.value + 1) % heroImages.length
+}
 
 const handleScroll = () => {
   if (rafId) return
@@ -75,10 +92,15 @@ const handleScroll = () => {
   })
 }
 
-onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true }))
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  slideInterval = setInterval(advanceSlide, 4000)
+})
+
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   if (rafId) cancelAnimationFrame(rafId)
+  if (slideInterval) clearInterval(slideInterval)
 })
 </script>
 
@@ -141,9 +163,72 @@ onUnmounted(() => {
   z-index: 0;
 }
 
-.hero-content {
+.hero-inner {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-visual {
+  flex: 0 0 auto;
+  width: clamp(320px, 38vw, 560px);
+  height: clamp(380px, 52vw, 640px);
+  margin-top: -3rem;
+  position: relative;
+}
+
+.hero-bubble-outer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 54% 46% 62% 38% / 50% 58% 42% 50%;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 88% 88% at 50% 50%, black 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 50%, black 55%, transparent 100%);
+  animation: bubble-float 8s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+
+.hero-bubble-outer:hover {
+  transform: scale(1.03);
+}
+
+.hero-bubble-soft {
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: var(--sand-paper);
+  z-index: 0;
+  filter: blur(6px);
+  opacity: 0.4;
+}
+
+.hero-bubble-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+}
+
+.hero-bubble-slide.active {
+  opacity: 1;
+}
+
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(0.8deg); }
+  66% { transform: translateY(-5px) rotate(-0.5deg); }
 }
 
 .hero-tagline {
@@ -218,12 +303,28 @@ onUnmounted(() => {
   margin-top: 2.5rem;
 }
 
+@media (max-width: 1100px) {
+  .hero-inner { gap: 2rem; }
+  .hero-visual {
+    width: clamp(260px, 32vw, 400px);
+    height: clamp(320px, 44vw, 500px);
+    margin-top: -1rem;
+  }
+}
+
 @media (max-width: 900px) {
-  .hero { min-height: 80vh; padding: 6rem 6% 4rem; }
+  .hero { min-height: auto; padding: 6rem 6% 4rem; }
+  .hero-inner { flex-direction: column; gap: 1.5rem; align-items: stretch; }
   .hero h1 { font-size: 2.5rem; }
-  .hero p { max-width: 100%; }
+  .hero p { max-width: 100%; text-align: left; border-right: none; padding-right: 0; margin-left: 0; }
   .hero-highlights { gap: 1rem; flex-wrap: wrap; }
   .highlight-num { font-size: 2rem; }
   .highlight-item { padding: 0.75rem 1rem 0.75rem 0; }
+  .hero-visual {
+    width: 260px;
+    height: 300px;
+    margin: 0 auto -1rem;
+    order: -1;
+  }
 }
 </style>

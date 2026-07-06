@@ -1,9 +1,9 @@
 <template>
   <section class="container economia-section" id="territorios">
     <div class="reveal">
-      <span class="mono">Cultura e Comunidade</span>
+      <span class="mono">Economia Solidária & Criativa</span>
       <h2>Economia Solidária & Criativa</h2>
-      <p class="economia-intro">Nossa produção valoriza o trabalho manual, a troca justa e a relação direta entre quem cultiva, quem cria e quem consome. Conheça nossas principais frentes.</p>
+      <p class="economia-intro">Nossa produção valoriza o trabalho manual, a troca justa e a relação direta entre quem cultiva, quem cria e quem consome. A bioconstrução comunitária e cultural é intercalada com venda de produtos orgânicos e artesanatos tradicionais, fortalecendo a economia solidária e criativa.</p>
     </div>
 
     <div class="economia-grid">
@@ -31,16 +31,16 @@ const faqItems = faq.economia
 
 const economiaItems = [
   {
-    title: 'Bioconstrução Comercial',
-    description: 'Entre 2014 e 2015, em parceria com a Fazenda São Miguel Arcanjo, executamos a bioconstrução de um interposto urbano para venda de produtos orgânicos e artesanato, contribuindo para o enriquecimento cultural de Águas da Prata (SP).'
+    title: 'Bioconstrução Comunitária e Cultural',
+    description: 'Entre 2014 e 2015, em parceria com a Fazenda São Miguel Arcanjo, executamos a bioconstrução de um interposto urbano para venda de produtos orgânicos e artesanato, contribuindo para o enriquecimento cultural de Águas da Prata (SP). A bioconstrução comunitária e cultural é intercalada com venda de produtos orgânicos e artesanatos tradicionais.'
   },
   {
     title: 'CSA — Comunidade que Sustenta a Agricultura',
-    description: 'Em 2018, firmamos parceria com um coletivo de Poços de Caldas (MG) fornecendo 15 cestas de produtos orgânicos por semana. Além dos alimentos, realizamos atividades de visitação, plantio e colheita junto ao grupo participante.'
+    description: 'Em 2018, firmamos parceria com um coletivo da região por meio do programa CSA, fornecendo semanalmente 15 cestas de produtos orgânicos, além de atividades de visitação, plantio e colheita junto ao grupo participante. Participação em feiras de artesanato com cestaria em cipó, instrumentos musicais tradicionais, escultura, mudas de plantas e hortaliças.'
   },
   {
-    title: 'Feiras e Artesanato',
-    description: 'Participação em feiras de artesanato e economia criativa na região, com produção incluindo cestaria em cipó, instrumentos musicais tradicionais, esculturas, mudas de plantas, alimentos naturais e utensílios de cerâmica.'
+    title: 'Feiras e Economia Criativa',
+    description: 'Participação em dezenas de feiras de artesanato e economia criativa em municípios da região, com produção incluindo cestaria em cipó, instrumentos musicais tradicionais, esculturas, mudas de plantas, hortaliças, alimentos naturais e utensílios de cerâmica. Ações que fortalecem a economia solidária e a divulgação das atividades culturais.'
   }
 ]
 </script>

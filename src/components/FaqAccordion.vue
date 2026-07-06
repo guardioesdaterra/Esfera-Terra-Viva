@@ -15,7 +15,7 @@
             <path d="M12 8v8M8 12h8"/>
           </svg>
         </button>
-        <div class="faq-answer" ref="answers">
+        <div class="faq-answer">
           <div class="faq-answer-inner">
             <p>{{ item.a }}</p>
           </div>

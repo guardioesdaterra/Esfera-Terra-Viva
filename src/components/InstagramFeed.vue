@@ -31,7 +31,7 @@
           <img
             :src="assetPath(post.thumb)"
             :alt="'Post ' + post.code"
-            loading="lazy"
+            :loading="index < 4 ? 'eager' : 'lazy'"
             @error="onImgError"
           />
           <div class="post-overlay">
@@ -86,12 +86,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { postsData, accountInfo } from '../data/posts.js'
-
-function assetPath(path) {
-  const base = import.meta.env.BASE_URL
-  const clean = path.startsWith('/') ? path.slice(1) : path
-  return base + clean
-}
+import { assetPath } from '../utils/paths.js'
 
 const posts = ref(postsData)
 const account = ref(accountInfo)
