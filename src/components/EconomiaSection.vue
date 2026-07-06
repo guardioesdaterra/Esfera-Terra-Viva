@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="honeycomb" :opacity="0.04" blend-mode="multiply" color="#BC6C25" :stroke="0.5" :grid="48">
+  <TextureSection type="grid-dot" :opacity="0.05" blend-mode="multiply" color="#BC6C25" :grid="20" :radius="1.5">
     <section class="container economia-section" id="territorios">
     <div class="reveal">
       <span class="mono">Economia Solidária & Criativa</span>

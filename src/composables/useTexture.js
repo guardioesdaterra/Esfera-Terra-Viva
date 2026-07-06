@@ -199,6 +199,68 @@ const SVG = {
       size: g,
     }
   },
+  pinstripe: (o) => ({
+    url: svg(`<svg viewBox='0 0 4 4'><rect x='0' y='0' width='1' height='4' fill='${o.c||'#000'}' opacity='${o.int||0.04}'/></svg>`),
+    size: 4,
+  }),
+  fishnet: (o) => {
+    const g = o.g || 32
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><line x1='0' y1='0' x2='${g}' y2='${g}' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><line x1='0' y1='${g}' x2='${g}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><rect x='${g/2}' y='0' width='${g/2}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/><rect x='0' y='${g/2}' width='${g/2}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/></svg>`),
+      size: g,
+    }
+  },
+  target: (o) => {
+    const g = o.g || 48
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><circle cx='${g/2}' cy='${g/2}' r='${g/2}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><circle cx='${g/2}' cy='${g/2}' r='${g/3}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><circle cx='${g/2}' cy='${g/2}' r='${g/6}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/></svg>`),
+      size: g,
+    }
+  },
+  sunburst: (o) => {
+    const g = o.g || 48
+    let lines = ''
+    for (let i = 0; i < 8; i++) {
+      const a = (i * Math.PI) / 4
+      lines += `<line x1='${g/2}' y1='${g/2}' x2='${g/2+Math.cos(a)*g}' y2='${g/2+Math.sin(a)*g}' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/>`
+    }
+    return { url: svg(`<svg viewBox='0 0 ${g} ${g}'>${lines}</svg>`), size: g }
+  },
+  bubble: (o) => {
+    const g = o.g || 48
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><circle cx='${g/4}' cy='${g/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g*3/4}' cy='${g/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g/2}' cy='${g/2}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g/4}' cy='${g*3/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g*3/4}' cy='${g*3/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/></svg>`),
+      size: g,
+    }
+  },
+  cobblestone: (o) => {
+    const g = o.g || 40
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='1' y='1' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='1' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='1' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
+      size: g,
+    }
+  },
+  shingle: (o) => {
+    const g = o.g || 48
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g/2}'><rect x='0' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g/3+1}' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g*2/3-1}' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g/6}' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/><rect x='${g/2}' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/></svg>`),
+      size: g,
+    }
+  },
+  parquet: (o) => {
+    const g = o.g || 48
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g/2}' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g/4}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g*3/4}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/></svg>`),
+      size: g,
+    }
+  },
+  tartan: (o) => {
+    const g = o.g || 48
+    return {
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g*3/4}' y='0' width='${g/4}' height='${g}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='0' y='0' width='${g}' height='${g/4}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='0' y='${g*3/4}' width='${g}' height='${g/4}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/></svg>`),
+      size: g,
+    }
+  },
 }
 
 const CSS_PATTERNS = {
@@ -247,6 +309,30 @@ const CSS_PATTERNS = {
   }),
   spotlight: (o) => ({
     css: `radial-gradient(ellipse at ${o.p||'30% 30%'}, transparent 30%, ${o.c||'rgba(74,55,40,0.015)'} 100%)`,
+  }),
+  crossfade: (o) => ({
+    css: `
+      linear-gradient(135deg, ${o.c||'rgba(226,114,91,0.02)'} 0%, transparent 30%, transparent 70%, ${o.c2||'rgba(188,108,37,0.02)'} 100%),
+      linear-gradient(225deg, transparent 40%, ${o.c3||'rgba(74,55,40,0.015)'} 100%)
+    `,
+  }),
+  'stripe-fat': (o) => ({
+    css: `repeating-linear-gradient(0deg, transparent, transparent ${o.s||30}px, ${o.c||'rgba(74,55,40,0.03)'} ${o.s||30}px, ${o.c||'rgba(74,55,40,0.03)'} ${(o.s||30)+(o.w||4)}px)`,
+  }),
+  'stripe-fat-h': (o) => ({
+    css: `repeating-linear-gradient(90deg, transparent, transparent ${o.s||30}px, ${o.c||'rgba(74,55,40,0.03)'} ${o.s||30}px, ${o.c||'rgba(74,55,40,0.03)'} ${(o.s||30)+(o.w||4)}px)`,
+  }),
+  plaid: (o) => ({
+    css: `
+      repeating-linear-gradient(0deg, transparent, transparent ${o.s||20}px, ${o.c||'rgba(74,55,40,0.025)'} ${o.s||20}px, ${o.c||'rgba(74,55,40,0.025)'} ${(o.s||20)+(o.w||2)}px),
+      repeating-linear-gradient(90deg, transparent, transparent ${o.s||20}px, ${o.c2||'rgba(188,108,37,0.02)'} ${o.s||20}px, ${o.c2||'rgba(188,108,37,0.02)'} ${(o.s||20)+(o.w||2)}px)
+    `,
+  }),
+  'gradient-noise': (o) => ({
+    css: `
+      repeating-linear-gradient(45deg, transparent, transparent ${o.s||4}px, ${o.c||'rgba(74,55,40,0.012)'} ${o.s||4}px, ${o.c||'rgba(74,55,40,0.012)'} ${(o.s||4)+1}px),
+      repeating-linear-gradient(-45deg, transparent, transparent ${o.s||4}px, ${o.c2||'rgba(188,108,37,0.008)'} ${o.s||4}px, ${o.c2||'rgba(188,108,37,0.008)'} ${(o.s||4)+1}px)
+    `,
   }),
 }
 

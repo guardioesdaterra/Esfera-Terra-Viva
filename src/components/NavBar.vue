@@ -1,6 +1,6 @@
 <template>
   <nav :class="{ compact: compact, open: isOpen }">
-    <TextureOverlay type="paper" :opacity="0.3" blend-mode="multiply" position="absolute" :z-index="-1" />
+    <TextureOverlay type="paper" :opacity="0.35" blend-mode="multiply" position="absolute" :z-index="-1" />
     <a href="#" class="logo">
       <span class="logo-mark">ETV</span>
       <span class="logo-text">Esfera Terra Viva</span>

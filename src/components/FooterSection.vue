@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="dots" :opacity="0.04" blend-mode="multiply" color="#BC6C25" :radius="2" :grid="36">
+  <TextureSection type="diamond" :opacity="0.04" blend-mode="multiply" color="#BC6C25">
     <footer id="contato">
     <div class="footer-main">
       <div class="footer-brand">
