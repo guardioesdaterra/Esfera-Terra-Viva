@@ -336,9 +336,12 @@ const CSS_PATTERNS = {
   }),
 }
 
+const CSS_KEYS = Object.keys(CSS_PATTERNS)
+const SVG_KEYS = Object.keys(SVG)
+
 function opts(config) {
   return {
-    c: config.color || (config.type === 'paper' || config.type === 'vintage' || config.type === 'grid' ? null : '#000'),
+    c: config.color || (CSS_KEYS.includes(config.type) ? null : '#000'),
     c2: config.color2 || null,
     c3: config.color3 || null,
     int: config.intensity != null ? config.intensity : 0.08,
@@ -354,8 +357,6 @@ function opts(config) {
   }
 }
 
-const SVG_KEYS = Object.keys(SVG)
-const CSS_KEYS = Object.keys(CSS_PATTERNS)
 const ALL_KEYS = [...SVG_KEYS, ...CSS_KEYS]
 
 export function useTexture(options = {}) {

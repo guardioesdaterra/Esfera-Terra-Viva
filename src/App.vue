@@ -5,8 +5,6 @@
     <TextureOverlay type="vintage" :opacity="1" :zIndex="9997" />
     <TextureOverlay type="dust" :opacity="0.025" :zIndex="9996" />
     <TextureOverlay type="crosshatch" :opacity="0.05" blend-mode="multiply" :zIndex="9995" color="#4A3728" :stroke="0.5" />
-    <TextureOverlay type="edgeburn" :opacity="1" :zIndex="9994" />
-    <TextureOverlay type="grunge" :opacity="0.015" :zIndex="9993" blend-mode="multiply" />
     <div class="diffusion-blob" ref="blob"></div>
     <div class="scroll-progress" ref="progress"></div>
 
