@@ -12,7 +12,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-inner">
       <div class="hero-content">
-        <span class="mono hero-tagline reveal visible">CULTSP Cult Lovers — Ponto de Cultura</span>
+        <span class="mono hero-tagline reveal visible">CULTSPO — Ponto de Cultura</span>
         <h1 class="reveal visible">
           Tecendo novos modos de <i>habitar a terra.</i>
         </h1>
