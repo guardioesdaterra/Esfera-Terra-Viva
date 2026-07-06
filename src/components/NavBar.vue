@@ -1,8 +1,8 @@
 <template>
   <nav :class="{ compact: compact, open: isOpen }">
-    <TextureOverlay type="paper" :opacity="0.35" blend-mode="multiply" position="absolute" :z-index="-1" />
+    <TextureOverlay type="paper" :opacity="0.5" blend-mode="multiply" position="absolute" :z-index="-1" />
     <a href="#" class="logo">
-      <span class="logo-mark">ETV</span>
+      <img class="logo-mark" :src="assetPath('Three-Dots.webp')" alt="Esfera Terra Viva" width="36" height="36" />
       <span class="logo-text">Esfera Terra Viva</span>
     </a>
 
@@ -30,6 +30,7 @@
 <script setup>
 import { ref } from 'vue'
 import TextureOverlay from './textures/TextureOverlay.vue'
+import { assetPath } from '../utils/paths.js'
 
 const props = defineProps({
   compact: { type: Boolean, default: false }
@@ -75,24 +76,17 @@ nav.compact {
 }
 
 .logo-mark {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
   width: 36px;
   height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clay-deep);
-  color: var(--sand-paper);
   border-radius: 8px;
+  object-fit: cover;
   transition: var(--transition-soft);
+  display: block;
 }
 
 .compact .logo-mark {
   width: 30px;
   height: 30px;
-  font-size: 0.9rem;
   border-radius: 6px;
 }
 

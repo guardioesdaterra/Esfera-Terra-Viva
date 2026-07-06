@@ -1,10 +1,10 @@
 <template>
-  <TextureSection type="diamond" :opacity="0.08" blend-mode="multiply" color="#BC6C25">
+  <TextureSection type="diamond" :opacity="0.2" blend-mode="multiply" color="#BC6C25">
     <footer id="contato">
     <div class="footer-main">
       <div class="footer-brand">
         <h2>
-          <span class="logo-mark">ETV</span>
+          <img class="logo-mark" :src="assetPath('Three-Dots.webp')" alt="Esfera Terra Viva" width="32" height="32" />
           Esfera Terra Viva
         </h2>
         <p class="mono footer-locale">São João da Boa Vista, SP</p>
@@ -62,6 +62,7 @@
 <script setup>
 import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
+import { assetPath } from '../utils/paths.js'
 import { faq } from '../data/faqData.js'
 
 const faqItems = faq.footer
@@ -91,17 +92,12 @@ footer {
 }
 
 .logo-mark {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
-  font-weight: 700;
   width: 32px;
   height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clay-deep);
-  color: var(--sand-paper);
   border-radius: 6px;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .footer-locale {

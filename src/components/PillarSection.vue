@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="canvas" :opacity="0.1" blend-mode="multiply" color="#4A3728">
+  <TextureSection type="canvas" :opacity="0.2" blend-mode="multiply" color="#4A3728">
     <section class="pillars-wrap" id="fazemos">
     <div class="container">
       <div class="section-label reveal">

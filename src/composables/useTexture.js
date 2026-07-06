@@ -1,42 +1,21 @@
 import { computed, reactive } from 'vue'
 
 function svg(s) {
-  const withXmlns = s.includes('xmlns=') ? s : s.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"')
-  return `url("data:image/svg+xml,${encodeURIComponent(withXmlns.replace(/\s+/g, ' '))}")`
+  const w = s.includes('xmlns=') ? s : s.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"')
+  return `url("data:image/svg+xml,${encodeURIComponent(w.replace(/\s+/g, ' '))}")`
 }
 
 function sz(v, s) { return (v || s) * (arguments[2] || 1) }
 
 const SVG = {
   noise: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.8}' numOctaves='${o.oct||2}' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>`),
-    size: 128,
+    url: svg(`<svg viewBox='0 0 32 32'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.6}' numOctaves='${o.oct||1}' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>`),
+    size: 64,
   }),
   dust: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='d'><feTurbulence type='fractalNoise' baseFrequency='${o.f||3}' numOctaves='${o.oct||1}' stitchTiles='stitch'/><feColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 ${o.int||0.12} 0'/></filter><rect width='100%' height='100%' filter='url(#d)'/></svg>`),
-    size: 64,
+    url: svg(`<svg viewBox='0 0 32 32'><filter id='d'><feTurbulence type='fractalNoise' baseFrequency='${o.f||2}' numOctaves='${o.oct||1}' stitchTiles='stitch'/><feColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 ${o.int||0.12} 0'/></filter><rect width='100%' height='100%' filter='url(#d)'/></svg>`),
+    size: 32,
   }),
-  grunge: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.35}' numOctaves='${o.oct||3}' stitchTiles='stitch'/><feColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 ${o.int||0.15} 0'/></filter><rect width='100%' height='100%' filter='url(#g)'/></svg>`),
-    size: 96,
-  }),
-  sand: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='${o.f||1.8}' numOctaves='${o.oct||2}' stitchTiles='stitch'/><feColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 ${o.int||0.08} 0'/></filter><rect width='100%' height='100%' filter='url(#s)'/></svg>`),
-    size: 48,
-  }),
-  plaster: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='${o.f||1.2}' numOctaves='${o.oct||2}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='${o.int||0.06}'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(#p)'/></svg>`),
-    size: 128,
-  }),
-  concrete: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.6}' numOctaves='${o.oct||3}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='${o.int||0.08}'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(#c)'/></svg>`),
-    size: 128,
-  }),
-  rough: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='${o.f||1.5}' numOctaves='${o.oct||3}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(#r)' opacity='${o.int||0.07}'/></svg>`),
-    size: 64,
-  }),
-
   dots: (o) => {
     const g = o.g || 48
     return {
@@ -117,43 +96,42 @@ const SVG = {
       size: g,
     }
   },
-
   canvas: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||32} ${o.g||32}'><rect x='0' y='0' width='${(o.g||32)/2}' height='${(o.g||32)/2}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='${(o.g||32)/2}' y='${(o.g||32)/2}' width='${(o.g||32)/2}' height='${(o.g||32)/2}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><line x1='0' y1='${(o.g||32)/2}' x2='${o.g||32}' y2='${(o.g||32)/2}' stroke='${o.c||'#000'}' stroke-width='0.5' opacity='${(o.int||0.06)*0.6}'/><line x1='${(o.g||32)/2}' y1='0' x2='${(o.g||32)/2}' y2='${o.g||32}' stroke='${o.c||'#000'}' stroke-width='0.5' opacity='${(o.int||0.06)*0.6}'/></svg>`),
-    size: o.g || 32,
+    url: svg(`<svg viewBox='0 0 ${o.g||24} ${o.g||24}'><rect x='0' y='0' width='${(o.g||24)/2}' height='${(o.g||24)/2}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='${(o.g||24)/2}' y='${(o.g||24)/2}' width='${(o.g||24)/2}' height='${(o.g||24)/2}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
+    size: o.g || 24,
   }),
   herringbone: (o) => {
-    const g = o.g || 32
+    const g = o.g || 24
     return {
-      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.6}'/><rect x='${g/2}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.6}'/><rect x='${g/4}' y='${g/4}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.4}'/><rect x='${g*3/4}' y='${g*3/4}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.4}'/><line x1='0' y1='${g/2}' x2='${g/2}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><line x1='${g/2}' y1='${g}' x2='${g}' y2='${g/2}' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.6}'/><rect x='${g/2}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.1)*0.6}'/></svg>`),
       size: g,
     }
   },
   woven: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||32} ${o.g||32}'><line x1='0' y1='0' x2='${o.g||32}' y2='${o.g||32}' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${(o.int||0.08)*0.6}'/><line x1='0' y1='${o.g||32}' x2='${o.g||32}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${(o.int||0.08)*0.6}'/><rect x='0' y='0' width='${(o.g||32)/2}' height='${(o.g||32)/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.08)*0.5}'/><rect x='${(o.g||32)/2}' y='${(o.g||32)/2}' width='${(o.g||32)/2}' height='${(o.g||32)/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.08)*0.5}'/></svg>`),
-    size: o.g || 32,
+    url: svg(`<svg viewBox='0 0 ${o.g||24} ${o.g||24}'><line x1='0' y1='0' x2='${o.g||24}' y2='${o.g||24}' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${(o.int||0.08)*0.6}'/><line x1='0' y1='${o.g||24}' x2='${o.g||24}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${(o.int||0.08)*0.6}'/></svg>`),
+    size: o.g || 24,
   }),
   scales: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||48} ${(o.g||48)/2}'><circle cx='${(o.g||48)/4}' cy='${(o.g||48)/4}' r='${(o.g||48)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><circle cx='${(o.g||48)*3/4}' cy='${(o.g||48)/4}' r='${(o.g||48)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><circle cx='${(o.g||48)/2}' cy='${(o.g||48)*3/4}' r='${(o.g||48)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
-    size: o.g || 48,
+    url: svg(`<svg viewBox='0 0 ${o.g||36} ${(o.g||36)/2}'><circle cx='${(o.g||36)/4}' cy='${(o.g||36)/4}' r='${(o.g||36)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><circle cx='${(o.g||36)*3/4}' cy='${(o.g||36)/4}' r='${(o.g||36)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><circle cx='${(o.g||36)/2}' cy='${(o.g||36)*3/4}' r='${(o.g||36)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
+    size: o.g || 36,
   }),
   brick: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||48} ${(o.g||48)/2}'><rect x='0' y='0' width='${(o.g||48)/2-1}' height='${(o.g||48)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/><rect x='${(o.g||48)/2+1}' y='0' width='${(o.g||48)/2-1}' height='${(o.g||48)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/><rect x='${-(o.g||48)/4}' y='${(o.g||48)/4+1}' width='${(o.g||48)/2-1}' height='${(o.g||48)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/><rect x='${(o.g||48)/4+1}' y='${(o.g||48)/4+1}' width='${(o.g||48)/2-1}' height='${(o.g||48)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/><rect x='${(o.g||48)*3/4+1}' y='${(o.g||48)/4+1}' width='${(o.g||48)/2-1}' height='${(o.g||48)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/></svg>`),
-    size: o.g || 48,
+    url: svg(`<svg viewBox='0 0 ${o.g||36} ${(o.g||36)/2}'><rect x='0' y='0' width='${(o.g||36)/2-1}' height='${(o.g||36)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/><rect x='${(o.g||36)/2+1}' y='0' width='${(o.g||36)/2-1}' height='${(o.g||36)/4-1}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.12}'/></svg>`),
+    size: o.g || 36,
   }),
   basket: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/3}' height='${g/3}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='${g*2/3}' y='0' width='${g/3}' height='${g/3}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='${g/3}' y='${g/3}' width='${g/3}' height='${g/3}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='0' y='${g*2/3}' width='${g/3}' height='${g/3}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/><rect x='${g*2/3}' y='${g*2/3}' width='${g/3}' height='${g/3}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
       size: g,
     }
   },
   ribbed: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||12} ${o.g||12}'><rect x='0' y='0' width='${(o.g||12)/2}' height='${o.g||12}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
-    size: o.g || 12,
+    url: svg(`<svg viewBox='0 0 ${o.g||8} ${o.g||8}'><rect x='0' y='0' width='${(o.g||8)/2}' height='${o.g||8}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
+    size: o.g || 8,
   }),
   twill: (o) => {
-    const g = o.g || 32
+    const g = o.g || 24
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><line x1='0' y1='${g/4}' x2='${g*3/4}' y2='${g}' stroke='${o.c||'#000'}' stroke-width='${o.w||1.5}' opacity='${(o.int||0.08)*0.5}'/><line x1='${g/4}' y1='0' x2='${g}' y2='${g*3/4}' stroke='${o.c||'#000'}' stroke-width='${o.w||1.5}' opacity='${(o.int||0.08)*0.5}'/></svg>`),
       size: g,
@@ -164,62 +142,41 @@ const SVG = {
     size: o.g || 4,
   }),
   'stripe-wide': (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||12} ${o.g||12}'><rect x='0' y='0' width='${(o.g||12)/2}' height='${o.g||12}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
-    size: o.g || 12,
+    url: svg(`<svg viewBox='0 0 ${o.g||8} ${o.g||8}'><rect x='0' y='0' width='${(o.g||8)/2}' height='${o.g||8}' fill='${o.c||'#000'}' opacity='${o.int||0.06}'/></svg>`),
+    size: o.g || 8,
   }),
   'stripe-diag': (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||16} ${o.g||16}'><line x1='0' y1='${o.g||16}' x2='${o.g||16}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${o.int||0.06}'/></svg>`),
-    size: o.g || 16,
+    url: svg(`<svg viewBox='0 0 ${o.g||12} ${o.g||12}'><line x1='0' y1='${o.g||12}' x2='${o.g||12}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||2}' opacity='${o.int||0.06}'/></svg>`),
+    size: o.g || 12,
   }),
-
   waves: (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||64} ${(o.g||64)/2}'><path d='M0 ${(o.g||64)/4} Q${(o.g||64)/4} 0 ${(o.g||64)/2} ${(o.g||64)/4} T${o.g||64} ${(o.g||64)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||1.5}' opacity='${o.int||0.08}'/></svg>`),
-    size: o.g || 64,
+    url: svg(`<svg viewBox='0 0 ${o.g||48} ${(o.g||48)/2}'><path d='M0 ${(o.g||48)/4} Q${(o.g||48)/4} 0 ${(o.g||48)/2} ${(o.g||48)/4} T${o.g||48} ${(o.g||48)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||1.5}' opacity='${o.int||0.08}'/></svg>`),
+    size: o.g || 48,
   }),
   'waves-dense': (o) => ({
-    url: svg(`<svg viewBox='0 0 ${o.g||24} ${(o.g||24)/2}'><path d='M0 ${(o.g||24)/4} Q${(o.g||24)/4} 0 ${(o.g||24)/2} ${(o.g||24)/4} T${o.g||24} ${(o.g||24)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||1}' opacity='${o.int||0.05}'/></svg>`),
-    size: o.g || 24,
+    url: svg(`<svg viewBox='0 0 ${o.g||16} ${(o.g||16)/2}'><path d='M0 ${(o.g||16)/4} Q${(o.g||16)/4} 0 ${(o.g||16)/2} ${(o.g||16)/4} T${o.g||16} ${(o.g||16)/4}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||1}' opacity='${o.int||0.05}'/></svg>`),
+    size: o.g || 16,
   }),
-
-  wood: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.02} 0.4' numOctaves='${o.oct||2}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='${o.int||0.05}'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(#w)'/></svg>`),
-    size: 128,
-  }),
-  stone: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='st'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.05}' numOctaves='${o.oct||4}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='${o.int||0.07}'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(#st)'/></svg>`),
-    size: 128,
-  }),
-  leather: (o) => ({
-    url: svg(`<svg viewBox='0 0 64 64'><filter id='l'><feTurbulence type='fractalNoise' baseFrequency='${o.f||0.1}' numOctaves='${o.oct||3}' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='${o.int||0.06}'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(#l)'/></svg>`),
-    size: 128,
-  }),
-  denim: (o) => {
-    const g = o.g || 4
-    return {
-      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/2}' height='${g}' fill='${o.c||'#000'}' opacity='${o.int||0.07}'/><line x1='0' y1='0' x2='${g}' y2='${g}' stroke='${o.c||'#000'}' stroke-width='0.3' opacity='${(o.int||0.07)*0.5}'/><line x1='${g}' y1='0' x2='0' y2='${g}' stroke='${o.c||'#000'}' stroke-width='0.3' opacity='${(o.int||0.07)*0.5}'/></svg>`),
-      size: g,
-    }
-  },
   pinstripe: (o) => ({
     url: svg(`<svg viewBox='0 0 4 4'><rect x='0' y='0' width='1' height='4' fill='${o.c||'#000'}' opacity='${o.int||0.04}'/></svg>`),
     size: 4,
   }),
   fishnet: (o) => {
-    const g = o.g || 32
+    const g = o.g || 24
     return {
-      url: svg(`<svg viewBox='0 0 ${g} ${g}'><line x1='0' y1='0' x2='${g}' y2='${g}' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><line x1='0' y1='${g}' x2='${g}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><rect x='${g/2}' y='0' width='${g/2}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/><rect x='0' y='${g/2}' width='${g/2}' height='${g/2}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/></svg>`),
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><line x1='0' y1='0' x2='${g}' y2='${g}' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><line x1='0' y1='${g}' x2='${g}' y2='0' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/></svg>`),
       size: g,
     }
   },
   target: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><circle cx='${g/2}' cy='${g/2}' r='${g/2}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><circle cx='${g/2}' cy='${g/2}' r='${g/3}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/><circle cx='${g/2}' cy='${g/2}' r='${g/6}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.06}'/></svg>`),
       size: g,
     }
   },
   sunburst: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     let lines = ''
     for (let i = 0; i < 8; i++) {
       const a = (i * Math.PI) / 4
@@ -228,35 +185,35 @@ const SVG = {
     return { url: svg(`<svg viewBox='0 0 ${g} ${g}'>${lines}</svg>`), size: g }
   },
   bubble: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><circle cx='${g/4}' cy='${g/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g*3/4}' cy='${g/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g/2}' cy='${g/2}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g/4}' cy='${g*3/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/><circle cx='${g*3/4}' cy='${g*3/4}' r='${g/5}' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.05}'/></svg>`),
       size: g,
     }
   },
   cobblestone: (o) => {
-    const g = o.g || 40
+    const g = o.g || 32
     return {
-      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='1' y='1' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='1' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='1' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='4' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
+      url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='1' y='1' width='${g/2-2}' height='${g/2-2}' rx='3' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='1' width='${g/2-2}' height='${g/2-2}' rx='3' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='1' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='3' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/><rect x='${g/2+1}' y='${g/2+1}' width='${g/2-2}' height='${g/2-2}' rx='3' fill='none' stroke='${o.c||'#000'}' stroke-width='${o.w||0.5}' opacity='${o.int||0.08}'/></svg>`),
       size: g,
     }
   },
   shingle: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
-      url: svg(`<svg viewBox='0 0 ${g} ${g/2}'><rect x='0' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g/3+1}' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g*2/3-1}' y='0' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g/6}' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/><rect x='${g/2}' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='2' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/></svg>`),
+      url: svg(`<svg viewBox='0 0 ${g} ${g/2}'><rect x='0' y='0' width='${g/3-2}' height='${g/4-2}' rx='1' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g/3+1}' y='0' width='${g/3-2}' height='${g/4-2}' rx='1' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='1' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='1' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/><rect x='${g/2+1}' y='${g/4}' width='${g/3-2}' height='${g/4-2}' rx='1' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.4}'/></svg>`),
       size: g,
     }
   },
   parquet: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g/2}' y='0' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g/4}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/><rect x='${g*3/4}' y='${g/2}' width='${g/4}' height='${g/2}' fill='${o.c||'#000'}' opacity='${o.int||0.05}'/></svg>`),
       size: g,
     }
   },
   tartan: (o) => {
-    const g = o.g || 48
+    const g = o.g || 36
     return {
       url: svg(`<svg viewBox='0 0 ${g} ${g}'><rect x='0' y='0' width='${g/4}' height='${g}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='${g*3/4}' y='0' width='${g/4}' height='${g}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='0' y='0' width='${g}' height='${g/4}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/><rect x='0' y='${g*3/4}' width='${g}' height='${g/4}' fill='${o.c||'#000'}' opacity='${(o.int||0.06)*0.5}'/></svg>`),
       size: g,
@@ -273,14 +230,14 @@ const CSS_PATTERNS = {
   }),
   grid: (o) => ({
     css: `
-      repeating-linear-gradient(0deg, transparent, transparent ${sz(o.g,30)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,30)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,30)+1}px),
-      repeating-linear-gradient(90deg, transparent, transparent ${sz(o.g,30)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,30)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,30)+1}px)
+      repeating-linear-gradient(0deg, transparent, transparent ${sz(o.g,24)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,24)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,24)+1}px),
+      repeating-linear-gradient(90deg, transparent, transparent ${sz(o.g,24)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,24)}px, ${o.c||'rgba(74,55,40,0.04)'} ${sz(o.g,24)+1}px)
     `,
   }),
   'grid-fine': (o) => ({
     css: `
-      repeating-linear-gradient(0deg, transparent, transparent ${sz(o.g,10)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,10)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,10)+0.5}px),
-      repeating-linear-gradient(90deg, transparent, transparent ${sz(o.g,10)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,10)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,10)+0.5}px)
+      repeating-linear-gradient(0deg, transparent, transparent ${sz(o.g,8)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,8)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,8)+0.5}px),
+      repeating-linear-gradient(90deg, transparent, transparent ${sz(o.g,8)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,8)}px, ${o.c||'rgba(74,55,40,0.025)'} ${sz(o.g,8)+0.5}px)
     `,
   }),
   'stripe-css': (o) => ({
@@ -292,7 +249,6 @@ const CSS_PATTERNS = {
   'stripe-v': (o) => ({
     css: `repeating-linear-gradient(90deg, transparent, transparent ${o.s||6}px, ${o.c||'rgba(74,55,40,0.04)'} ${o.s||6}px, ${o.c||'rgba(74,55,40,0.04)'} ${(o.s||6)+(o.w||1)}px)`,
   }),
-
   vintage: (o) => ({
     css: `
       radial-gradient(ellipse at 50% 50%, transparent 60%, ${o.c||'rgba(188,108,37,0.03)'} 100%),
@@ -331,8 +287,8 @@ const CSS_PATTERNS = {
   }),
   'gradient-noise': (o) => ({
     css: `
-      repeating-linear-gradient(45deg, transparent, transparent ${o.s||4}px, ${o.c||'rgba(74,55,40,0.012)'} ${o.s||4}px, ${o.c||'rgba(74,55,40,0.012)'} ${(o.s||4)+1}px),
-      repeating-linear-gradient(-45deg, transparent, transparent ${o.s||4}px, ${o.c2||'rgba(188,108,37,0.008)'} ${o.s||4}px, ${o.c2||'rgba(188,108,37,0.008)'} ${(o.s||4)+1}px)
+      repeating-linear-gradient(45deg, transparent, transparent ${o.s||3}px, ${o.c||'rgba(74,55,40,0.012)'} ${o.s||3}px, ${o.c||'rgba(74,55,40,0.012)'} ${(o.s||3)+1}px),
+      repeating-linear-gradient(-45deg, transparent, transparent ${o.s||3}px, ${o.c2||'rgba(188,108,37,0.008)'} ${o.s||3}px, ${o.c2||'rgba(188,108,37,0.008)'} ${(o.s||3)+1}px)
     `,
   }),
 }
@@ -393,7 +349,7 @@ export function useTexture(options = {}) {
     const o = opts(config)
     const r = gen(o)
 
-    const result = {}
+    const result = { willChange: 'transform' }
 
     if (isSvg.value) {
       result.backgroundImage = r.url
@@ -407,7 +363,6 @@ export function useTexture(options = {}) {
     result.opacity = config.opacity
     if (config.blendMode) result.mixBlendMode = config.blendMode
     result.pointerEvents = 'none'
-    result.contain = 'paint'
 
     return result
   })

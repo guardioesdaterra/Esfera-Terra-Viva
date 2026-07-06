@@ -1,5 +1,5 @@
 <template>
-  <TextureSection type="checkerboard" :opacity="0.08" blend-mode="multiply" color="#6B705C">
+  <TextureSection type="checkerboard" :opacity="0.2" blend-mode="multiply" color="#6B705C">
     <section class="container instagram-section">
     <div class="reveal">
       <span class="mono">@esferaterraviva</span>
