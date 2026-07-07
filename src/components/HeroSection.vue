@@ -17,7 +17,7 @@
         <h1 class="reveal visible">
           Tecendo novos modos de <i>habitar a terra.</i>
         </h1>
-        <p class="reveal visible reveal-delay-1">De janeiro de 2014 a julho de 2024, o Ponto de Cultura operou no Círculo Vivencial Terra Viva, em Águas da Prata (SP) — Sistematizando e multiplicando saberes em bioconstrução, agroecologia, arte e ancestralidade.</p>
+        <p class="reveal visible reveal-delay-1">Sistematizando e multiplicando saberes em bioconstrução, agroecologia, arte e ancestralidade.</p>
 
         <div class="hero-highlights">
           <div class="highlight-item reveal visible" v-for="(stat, i) in stats" :key="i" :style="{ transitionDelay: (0.2 + i * 0.12) + 's' }">
@@ -145,9 +145,9 @@ onUnmounted(() => {
   mix-blend-mode: multiply;
 }
 
-.hero-bg-img:nth-child(1) { background-position: center 30%; opacity: 0.18; }
-.hero-bg-img:nth-child(2) { background-position: center 60%; opacity: 0.1; }
-.hero-bg-img:nth-child(3) { background-position: center 20%; opacity: 0.12; }
+.hero-bg-img:nth-child(1) { background-position: center 15%; opacity: 0.7; }
+.hero-bg-img:nth-child(2) { background-position: center 500%; opacity: 0.4; }
+.hero-bg-img:nth-child(3) { background-position: center 85%; opacity: 0.5; }
 
 .hero-fog {
   position: absolute;

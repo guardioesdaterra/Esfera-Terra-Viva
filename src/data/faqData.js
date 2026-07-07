@@ -1,26 +1,26 @@
 export const faq = {
   hero: [
     {
-      q: "O que é o Esfera Terra Viva?",
-      a: "O Esfera Terra Viva é a continuidade de uma trajetória iniciada em 2014 com o Círculo Vivencial Terra Viva, hoje em transição para uma nova fase de sistematização e multiplicação de saberes em diferentes grupos e territórios. Atua como Ponto de Cultura Comunitário — CULTSP — integrando bioconstrução, agroecologia, arte e ancestralidade, alinhado à Política Nacional de Cultura Viva (PNCV)."
+      q: "O que é o Ponto de Cultura Esfera Terra Viva?",
+      a: "O Ponto de Cultura Esfera Terra Viva é a continuidade de uma trajetória iniciada em 2014 com o Círculo Vivencial Terra Viva, hoje em transição para uma nova fase de sistematização e multiplicação de saberes em diferentes grupos e territórios. Atua como Ponto de Cultura Comunitário — CULTSP — integrando bioconstrução, agroecologia, arte e ancestralidade, alinhado à Política Nacional de Cultura Viva (PNCV)."
     },
     {
       q: "O que é um Ponto de Cultura?",
-      a: "Ponto de Cultura é uma iniciativa reconhecida pela Política Nacional de Cultura Viva (PNCV) que articula e potencializa ações culturais já existentes nas comunidades. O Esfera Terra Viva desenvolve ações contínuas nas áreas de formação, produção e difusão sociocultural, fortalecendo a diversidade cultural, a participação social e a cultura de paz."
+      a: "Ponto de Cultura é uma iniciativa reconhecida pela Política Nacional de Cultura Viva (PNCV) que articula e potencializa ações culturais já existentes nas comunidades. O Ponto de Cultura Esfera Terra Viva desenvolve ações contínuas nas áreas de formação, produção e difusão sociocultural, fortalecendo a diversidade cultural, a participação social e a cultura de paz."
     },
     {
       q: "Como surgiu o projeto?",
-      a: "O projeto nasceu em janeiro de 2014 na zona rural de Águas da Prata (SP), no Círculo Vivencial Terra Viva, um espaço integralmente bioconstruído na Fazenda São Miguel Arcanjo, sem utilização de energia elétrica, com técnicas de permacultura como taipa, bambu, adobe e captação natural de água. Durante uma década, acolheu vivências voltadas a novas formas de organização social. Em julho de 2024, encerrou o arrendamento e iniciou a transição para o Esfera Terra Viva."
+      a: "O projeto nasceu em janeiro de 2014 na zona rural de Águas da Prata (SP), no Círculo Vivencial Terra Viva, um espaço integralmente bioconstruído na Fazenda São Miguel Arcanjo, sem utilização de energia elétrica, com técnicas de permacultura como taipa, bambu, adobe e captação natural de água. Durante uma década, acolheu vivências voltadas a novas formas de organização social. Em julho de 2024, encerrou o vínculo e iniciou a transição para o Ponto de Cultura Esfera Terra Viva."
     }
   ],
   pillars: [
     {
       q: "O que é bioconstrução?",
-      a: "Bioconstrução é o conjunto de técnicas construtivas que utilizam materiais naturais e locais como terra, bambu, cipó, madeira e fibras naturais. O projeto formou dezenas de pessoas em técnicas como pau-a-pique, adobe, superadobe, telhado verde, captação natural de água, biodigestores e acabamentos com argila, sempre com recursos acessíveis e de baixo custo."
+      a: "Bioconstrução é o conjunto de técnicas construtivas que utilizam materiais naturais e locais como terra, bambu, cipó, madeira e fibras naturais. O projeto forma dezenas de pessoas em técnicas como pau-a-pique, adobe, superadobe, telhado verde, captação natural de água, biodigestores e acabamentos com argila, sempre com recursos acessíveis e de baixo custo."
     },
     {
       q: "Como funciona a agrofloresta?",
-      a: "A agrofloresta é uma forma de cultivo que combina árvores, arbustos, plantas alimentícias e medicinais em um mesmo terreno, imitando a estrutura de uma floresta natural. O projeto desenvolveu manejo agroflorestal, produção de mudas, plantio de alimentos, compostagem, beneficiamento de ervas e cultivo de PANCs (Plantas Alimentícias Não Convencionais)."
+      a: "A agrofloresta é uma forma de cultivo que combina árvores, arbustos, plantas alimentícias e medicinais em um mesmo terreno, inspirado na estrutura de uma floresta natural. O projeto desenvolve manejo agroflorestal, produção de mudas, plantio de alimentos, compostagem, beneficiamento de ervas e cultivo de PANCs (Plantas Alimentícias Não Convencionais)."
     },
     {
       q: "O que são sementes crioulas?",
@@ -42,7 +42,7 @@ export const faq = {
     },
     {
       q: "Por que a transição para Esfera Terra Viva?",
-      a: "Em julho de 2024, o projeto encerrou o arrendamento com a Fazenda São Miguel Arcanjo e iniciou a transição para o Esfera Terra Viva. Esta nova fase é dedicada à sistematização das experiências acumuladas ao longo de uma década e à multiplicação de saberes em diferentes grupos e territórios, iniciando pelo Oeste da Bahia e por São João da Boa Vista (SP)."
+      a: "Em julho de 2024, o projeto encerrou o vínculo com a Fazenda São Miguel Arcanjo e iniciou a transição para o Ponto de Cultura Esfera Terra Viva. Esta nova fase é dedicada à sistematização das experiências acumuladas ao longo de uma década e à multiplicação de saberes em diferentes grupos e territórios, iniciando pelo Oeste da Bahia e por São João da Boa Vista (SP)."
     },
     {
       q: "O projeto já participou de programas de TV ou revistas?",
@@ -84,7 +84,7 @@ export const faq = {
   footer: [
     {
       q: "Onde o projeto está localizado atualmente?",
-      a: "Atualmente o Esfera Terra Viva está desenvolvendo uma nova base na zona rural de São João da Boa Vista (SP), já recebendo pessoas para mutirões e atividades integrativas de criação e produção cultural. Entre 2024 e 2025, também atuou no Oeste da Bahia (Estação Flor do Alto), apoiando a implantação de uma comunidade intencional e compartilhando metodologias e tecnologias sociais."
+      a: "Atualmente o Ponto de Cultura Esfera Terra Viva está desenvolvendo uma nova base na zona rural de São João da Boa Vista (SP), já recebendo pessoas para mutirões e atividades integrativas de criação e produção cultural. Entre 2024 e 2025, também atuou no Oeste da Bahia (Estação Flor do Alto), apoiando a implantação de uma comunidade intencional e compartilhando metodologias e tecnologias sociais."
     },
     {
       q: "Como entrar em contato?",

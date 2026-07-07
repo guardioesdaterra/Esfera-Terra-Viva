@@ -23,6 +23,13 @@
         </div>
       </div>
 
+      <div class="timeline-trail-wrapper">
+        <ImageTrail
+          :items="trailImages"
+          :variant="1"
+        />
+      </div>
+
       <FaqAccordion :items="faqItems" title="Dúvidas sobre Nossa História" />
     </div>
   </section>
@@ -33,10 +40,23 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import TextureSection from './textures/TextureSection.vue'
 import FaqAccordion from './FaqAccordion.vue'
+import ImageTrail from './ImageTrail.vue'
+import { assetPath } from '../utils/paths.js'
 import { faq } from '../data/faqData.js'
 
 const faqItems = faq.timeline
 const trackRef = ref(null)
+
+const trailImages = [
+  assetPath('images/posts/[C6II2Obo8p9]_2024-04-23_23-19-48.webp'),
+  assetPath('images/posts/[C6TY7H-rTG0]_2024-04-28_08-22-04.webp'),
+  assetPath('images/posts/[C7eGqHcAW0u]_2024-05-27_08-41-37.webp'),
+  assetPath('images/posts/[C8hHH3GAAtY]_2024-06-22_09-11-23.webp'),
+  assetPath('images/posts/[C8hklhOsTdN]_2024-06-22_13-25-44.webp'),
+  assetPath('images/posts/[C8KnwzjJxEK]_2024-06-13_15-29-31.webp'),
+  assetPath('images/posts/[C8kAFR-gTFn]_2024-06-23_12-02-48.webp'),
+  assetPath('images/posts/[C8araXJJLvr]_2024-06-19_21-12-51.webp')
+]
 let timeObserver = null
 
 const timelineItems = [
@@ -58,7 +78,7 @@ const timelineItems = [
   {
     year: '2024 — PRESENTE',
     title: 'Esfera Terra Viva',
-    description: 'Julho de 2024: encerramento do arrendamento e transição para o Esfera Terra Viva. Atuação no Oeste da Bahia (Estação Flor do Alto) apoiando comunidade intencional e compartilhando metodologias e tecnologias sociais. Nova base em São João da Boa Vista (SP), recebendo mutirões e atividades integrativas. Sistematização e multiplicação dos saberes acumulados.'
+    description: 'Julho de 2024: encerramento do vínculo e transição para o Ponto de Cultura Esfera Terra Viva. Atuação no Oeste da Bahia (Estação Flor do Alto) apoiando comunidade intencional e compartilhando metodologias e tecnologias sociais. Nova base em São João da Boa Vista (SP), recebendo mutirões e atividades integrativas. Sistematização e multiplicação dos saberes acumulados.'
   }
 ]
 
@@ -217,6 +237,14 @@ onUnmounted(() => {
   font-size: 0.85rem;
   line-height: 1.7;
   opacity: 0.8;
+}
+
+.timeline-trail-wrapper {
+  height: 300px;
+  margin: 3rem 0;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
