@@ -86,23 +86,22 @@ onUnmounted(() => {
 
 <style scoped>
 .pillars-wrap {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .organic-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
 }
 
 .pillar-card {
-  grid-column: span 4;
-  background: rgba(255, 251, 242, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 3rem 2.5rem;
+  background: rgba(255, 251, 242, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 4rem 2.5rem 3.5rem;
   border-radius: var(--radius);
-  transition: var(--transition-soft);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   border: 1px solid rgba(74, 55, 40, 0.06);
   display: flex;
   flex-direction: column;
@@ -112,6 +111,34 @@ onUnmounted(() => {
   position: relative;
   transform-style: preserve-3d;
   perspective: 800px;
+  overflow: hidden;
+}
+
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ochre-sun), var(--terracotta), var(--ochre-sun));
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 0%, rgba(226, 114, 91, 0.04), transparent 50%),
+              radial-gradient(ellipse at 80% 100%, rgba(188, 108, 37, 0.03), transparent 50%);
+  pointer-events: none;
 }
 
 .pillar-glow {
@@ -120,17 +147,17 @@ onUnmounted(() => {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 30% 20%, rgba(226, 114, 91, 0.06), transparent 60%);
+  background: radial-gradient(circle at 30% 20%, rgba(226, 114, 91, 0.08), transparent 60%);
   opacity: 0;
   transition: opacity 0.6s ease;
   pointer-events: none;
 }
 
 .pillar-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
-  border-color: rgba(226, 114, 91, 0.15);
-  background: rgba(255, 251, 242, 0.95);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(74, 55, 40, 0.12), 0 8px 24px rgba(226, 114, 91, 0.08);
+  border-color: rgba(226, 114, 91, 0.18);
+  background: rgba(255, 251, 242, 0.97);
 }
 
 .pillar-card:hover .pillar-glow {
@@ -138,56 +165,84 @@ onUnmounted(() => {
 }
 
 .pillar-icon-wrap {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(226, 114, 91, 0.08), rgba(188, 108, 37, 0.08));
-  transition: var(--transition-soft);
-  margin-bottom: 0.5rem;
-  backdrop-filter: blur(4px);
+  background: linear-gradient(135deg, rgba(226, 114, 91, 0.1), rgba(188, 108, 37, 0.1));
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pillar-icon-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(226, 114, 91, 0.15), rgba(188, 108, 37, 0.05));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .pillar-card:hover .pillar-icon-wrap {
-  transform: scale(1.1);
-  background: linear-gradient(135deg, rgba(226, 114, 91, 0.15), rgba(188, 108, 37, 0.15));
+  transform: scale(1.12);
+  background: linear-gradient(135deg, rgba(226, 114, 91, 0.18), rgba(188, 108, 37, 0.15));
+}
+
+.pillar-card:hover .pillar-icon-wrap::after {
+  opacity: 1;
 }
 
 .pillar-card h3 {
-  margin: 1.5rem 0 0.5rem;
-  font-size: 1.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
 }
 
 .pillar-sub {
-  font-size: 0.65rem;
-  margin-bottom: 1.25rem;
-  display: block;
-  padding: 0.3rem 0.8rem;
+  font-size: 0.7rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
   border-radius: 100px;
-  background: rgba(74, 55, 40, 0.04);
-  backdrop-filter: blur(2px);
+  background: rgba(74, 55, 40, 0.05);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
 }
 
 .pillar-desc {
-  font-size: 0.85rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.8;
   color: var(--moss-haze);
+  position: relative;
+  z-index: 1;
+  max-width: 340px;
 }
 
 .pillar-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   fill: var(--terracotta);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 @media (max-width: 900px) {
-  .pillar-card { grid-column: span 6; }
+  .organic-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .pillar-card { padding: 3rem 2rem; }
+  .pillar-card h3 { font-size: 1.75rem; }
 }
 
 @media (max-width: 600px) {
-  .pillar-card { grid-column: span 12; padding: 2.5rem 1.5rem; }
+  .pillar-card { padding: 2.5rem 1.5rem; }
+  .pillar-card h3 { font-size: 1.5rem; }
 }
 </style>
