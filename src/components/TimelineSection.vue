@@ -106,10 +106,13 @@ onMounted(() => {
   if (!section || !wrapper) return
 
   mouseForwarder = (e) => {
-    wrapper.dispatchEvent(new MouseEvent('mousemove', {
-      clientX: e.clientX,
-      clientY: e.clientY
-    }))
+    const root = wrapper.querySelector('.itrail-root')
+    if (root) {
+      root.dispatchEvent(new MouseEvent('mousemove', {
+        clientX: e.clientX,
+        clientY: e.clientY
+      }))
+    }
   }
 
   section.addEventListener('mousemove', mouseForwarder)
@@ -169,7 +172,7 @@ onUnmounted(() => {
 .timeline-trail-wrapper {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
 }
 
