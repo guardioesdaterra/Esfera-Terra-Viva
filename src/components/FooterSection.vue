@@ -130,8 +130,8 @@ footer {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(74, 55, 40, 0.05);
-  color: var(--moss-haze);
+  background: rgba(74, 55, 40, 0.08);
+  color: var(--moss-light);
   transition: var(--transition-fast);
 }
 
@@ -153,8 +153,8 @@ footer {
 .footer-links a {
   display: block;
   text-decoration: none;
-  color: var(--moss-haze);
-  font-size: 0.8rem;
+  color: var(--moss-light);
+  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
   margin-bottom: 0.5rem;
   transition: var(--transition-fast);
   position: relative;
@@ -185,8 +185,8 @@ footer {
   padding-top: 2rem;
   border-top: 1px solid rgba(74, 55, 40, 0.06);
   text-align: center;
-  font-size: 0.75rem;
-  color: var(--moss-haze);
+  font-size: clamp(0.65rem, 0.8vw, 0.8rem);
+  color: var(--moss-light);
 }
 
 .footer-bottom p:last-child {

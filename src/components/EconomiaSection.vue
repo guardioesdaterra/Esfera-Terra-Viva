@@ -74,6 +74,7 @@ const economiaItems = [
   margin: 0 auto 3.5rem;
   color: var(--moss-haze);
   line-height: 1.7;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
 }
 
 .economia-grid {
@@ -109,6 +110,23 @@ const economiaItems = [
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.economia-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(226, 114, 91, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 1px;
+}
+
+.economia-card:hover::after {
+  opacity: 1;
+}
+
 .economia-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
@@ -129,12 +147,12 @@ const economiaItems = [
 }
 
 .economia-card h3 {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.3vw, 1.3rem);
   margin-bottom: 0.75rem;
 }
 
 .economia-card p {
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 0.95vw, 0.88rem);
   line-height: 1.7;
   color: var(--moss-haze);
 }

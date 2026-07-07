@@ -115,7 +115,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
 }
 
 .container {
-  padding: 5rem 8%;
+  padding: clamp(3rem, 5vw, 5rem) clamp(5%, 8vw, 8%);
   position: relative;
 }
 

@@ -165,8 +165,8 @@ onUnmounted(() => {
 }
 
 .pillar-icon-wrap {
-  width: 88px;
-  height: 88px;
+  width: clamp(72px, 8vw, 88px);
+  height: clamp(72px, 8vw, 88px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +200,7 @@ onUnmounted(() => {
 
 .pillar-card h3 {
   margin: 0 0 0.75rem;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
   letter-spacing: -0.02em;
   position: relative;
   z-index: 1;
@@ -220,17 +220,17 @@ onUnmounted(() => {
 }
 
 .pillar-desc {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
   line-height: 1.8;
   color: var(--moss-haze);
   position: relative;
   z-index: 1;
-  max-width: 340px;
+  max-width: clamp(280px, 30vw, 400px);
 }
 
 .pillar-icon {
-  width: 36px;
-  height: 36px;
+  width: clamp(30px, 3vw, 36px);
+  height: clamp(30px, 3vw, 36px);
   fill: var(--terracotta);
   opacity: 0.85;
 }

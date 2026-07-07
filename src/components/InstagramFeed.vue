@@ -223,16 +223,18 @@ const onKey = (e) => {
 
 .insta-stat-num {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 600;
   color: var(--terracotta);
 }
 
 .insta-stat-label {
-  font-size: 0.6rem;
+  font-size: clamp(0.55rem, 0.65vw, 0.65rem);
+  font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  color: var(--moss-haze);
+  color: var(--moss-light);
   margin-top: 0.25rem;
 }
 

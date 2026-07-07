@@ -49,22 +49,22 @@ nav {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1.5rem 8%;
+  padding: clamp(1rem, 2vw, 1.5rem) 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: var(--transition-soft);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  background: linear-gradient(to bottom, rgba(244, 235, 217, 0.7) 40%, transparent);
+  background: linear-gradient(to bottom, rgba(244, 235, 217, 0.75) 40%, transparent);
 }
 
 nav.compact {
-  padding: 0.8rem 8%;
+  padding: clamp(0.6rem, 1.2vw, 0.8rem) 8%;
   backdrop-filter: blur(20px) saturate(1.3);
   -webkit-backdrop-filter: blur(20px) saturate(1.3);
-  background: rgba(244, 235, 217, 0.88);
-  box-shadow: 0 1px 0 rgba(74, 55, 40, 0.06);
+  background: rgba(244, 235, 217, 0.92);
+  box-shadow: 0 1px 0 rgba(74, 55, 40, 0.08);
 }
 
 .logo {

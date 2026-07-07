@@ -183,8 +183,8 @@ onUnmounted(() => {
 }
 
 .timeline-intro {
-  font-size: 1rem;
-  color: rgba(244, 235, 217, 0.7);
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: rgba(244, 235, 217, 0.85);
   max-width: 600px;
   margin-bottom: 4rem;
   line-height: 1.7;
@@ -258,17 +258,18 @@ onUnmounted(() => {
 
 .timeline-item h3 {
   color: var(--sand-paper);
-  font-size: 1.3rem;
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
   margin-bottom: 0.75rem;
 }
 
 .timeline-item p {
-  font-size: 0.85rem;
+  font-size: clamp(0.82rem, 0.95vw, 0.9rem);
   line-height: 1.7;
-  opacity: 0.8;
+  opacity: 0.88;
+  color: rgba(244, 235, 217, 0.88);
 }
 
 @media (max-width: 900px) {
-  .timeline-section { padding: 4rem 6%; border-radius: 60px 60px 0 0; }
+  .timeline-section { padding: clamp(3rem, 6vw, 4rem) 6%; border-radius: clamp(40px, 8vw, 60px) clamp(40px, 8vw, 60px) 0 0; }
 }
 </style>

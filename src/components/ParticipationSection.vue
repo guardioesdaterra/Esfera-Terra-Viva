@@ -102,6 +102,23 @@ const participationItems = [
   overflow: hidden;
 }
 
+.participation-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(226, 114, 91, 0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 1px;
+}
+
+.participation-card:hover::before {
+  opacity: 1;
+}
+
 .participation-card::after {
   content: '';
   position: absolute;
@@ -114,6 +131,8 @@ const participationItems = [
   transform-origin: left;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+
 
 .participation-card:hover {
   transform: translateY(-6px);
@@ -135,12 +154,12 @@ const participationItems = [
 }
 
 .participation-card h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.15rem, 1.4vw, 1.4rem);
   margin-bottom: 0.75rem;
 }
 
 .participation-card p {
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 0.95vw, 0.88rem);
   line-height: 1.7;
   color: var(--moss-haze);
   flex: 1;
@@ -187,7 +206,7 @@ const participationItems = [
 
 .participation-banner h3 {
   color: white;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   margin-bottom: 1rem;
   position: relative;
 }

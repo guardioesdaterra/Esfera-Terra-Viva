@@ -240,11 +240,11 @@ onUnmounted(() => {
 .hero-tagline {
   margin-bottom: 1.5rem;
   display: inline-block;
-  padding: 0.4rem 1rem;
-  background: rgba(74, 55, 40, 0.06);
-  backdrop-filter: blur(4px);
+  padding: 0.5rem 1.2rem;
+  background: rgba(74, 55, 40, 0.12);
+  backdrop-filter: blur(6px);
   border-radius: 100px;
-  font-size: 0.65rem;
+  font-size: clamp(0.6rem, 0.8vw, 0.75rem);
 }
 
 .hero h1 {
@@ -263,13 +263,14 @@ onUnmounted(() => {
 .hero p {
   max-width: 520px;
   font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--clay-light);
+  font-weight: 700;
+  color: var(--white-bleached);
   margin-left: auto;
   text-align: right;
   border-right: 3px solid var(--ochre-sun);
   padding-right: 2rem;
   line-height: 1.7;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
 .hero-highlights {
@@ -292,20 +293,22 @@ onUnmounted(() => {
 .highlight-num {
   font-family: 'Playfair Display', serif;
   font-size: 3rem;
-  font-weight: 600;
-  color: var(--terracotta);
+  font-weight: 700;
+  color: var(--white-bleached);
   line-height: 1;
   display: inline-block;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 
 .highlight-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12rem;
-  color: var(--clay-light);
+  color: var(--white-bleached);
   margin-top: 0.4rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
 }
 
 .hero-cta {
@@ -352,9 +355,10 @@ onUnmounted(() => {
   .hero { min-height: auto; padding: 6rem 6% 4rem; }
   .hero-inner { flex-direction: column; gap: 1.5rem; align-items: stretch; }
   .hero h1 { font-size: 2.5rem; }
-  .hero p { max-width: 100%; text-align: left; border-right: none; padding-right: 0; margin-left: 0; }
+  .hero p { max-width: 100%; text-align: left; border-right: none; padding-right: 0; margin-left: 0; text-shadow: 0 2px 16px rgba(0,0,0,0.4); }
   .hero-highlights { gap: 1rem; flex-wrap: wrap; }
-  .highlight-num { font-size: 2rem; }
+  .highlight-num { font-size: 2rem; text-shadow: 0 2px 16px rgba(0,0,0,0.35); }
+  .highlight-label { text-shadow: 0 1px 12px rgba(0,0,0,0.3); }
   .highlight-item { padding: 0.75rem 1rem 0.75rem 0; }
   .hero-visual {
     width: 260px;
