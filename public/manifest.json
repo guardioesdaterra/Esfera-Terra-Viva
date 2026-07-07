@@ -1,0 +1,16 @@
+{
+  "name": "Esfera Terra Viva — Ponto de Cultura Comunitário",
+  "short_name": "Esfera Terra Viva",
+  "description": "Ponto de Cultura Comunitário — Tecendo novos modos de habitar a terra. Bioconstrução, agroecologia, arte e ancestralidade.",
+  "start_url": "/Esfera-Terra-Viva/",
+  "display": "standalone",
+  "background_color": "#F4EBD9",
+  "theme_color": "#F4EBD9",
+  "icons": [
+    {
+      "src": "/Esfera-Terra-Viva/Three-Dots.webp",
+      "sizes": "454x407",
+      "type": "image/webp"
+    }
+  ]
+}

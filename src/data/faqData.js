@@ -41,7 +41,7 @@ export const faq = {
       a: "Foi um espaço de experimentação e vivência coletiva que acolheu pessoas de diferentes origens, crenças, tradições e nacionalidades para vivências em bioconstrução, agrofloresta, artes, autoconhecimento, educação, ritos e celebrações de matrizes ancestrais. Promoveu cursos, oficinas, eventos culturais, voluntariado e mutirões, consolidando um método próprio de transmissão de saberes que une prática manual, tradição oral e criação coletiva."
     },
     {
-      q: "Por que a transição para Esfera Terra Viva?",
+      q: "Por que a transição para o Ponto de Cultura Esfera Terra Viva?",
       a: "Em julho de 2024, o projeto encerrou o vínculo com a Fazenda São Miguel Arcanjo e iniciou a transição para o Ponto de Cultura Esfera Terra Viva. Esta nova fase é dedicada à sistematização das experiências acumuladas ao longo de uma década e à multiplicação de saberes em diferentes grupos e territórios, iniciando pelo Oeste da Bahia e por São João da Boa Vista (SP)."
     },
     {

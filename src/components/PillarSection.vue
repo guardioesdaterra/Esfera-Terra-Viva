@@ -46,14 +46,14 @@ const pillars = [
     title: 'Bioconstrução',
     subtitle: 'Técnicas Ancestrais',
     radius: '40% 60% 70% 30% / 40% 50% 60% 50%',
-    description: 'Técnicas construtivas com materiais naturais e locais — terra, bambu, cipó, madeira e fibras. O projeto realizou cursos, mutirões e formações em pau-a-pique, adobe, superadobe, telhado verde, captação natural de água, biodigestores e acabamentos com argila, sempre com recursos acessíveis e de baixo custo.',
+    description: 'Técnicas construtivas com materiais naturais e locais — terra, bambu, cipó, madeira e fibras. O projeto realiza cursos, mutirões e formações em pau-a-pique, adobe, superadobe, telhado verde, captação natural de água, biodigestores e acabamentos com argila, sempre com recursos acessíveis e de baixo custo.',
     icon: 'M12,3L2,12H5V20H19V12H22L12,3M12,8.7L16.5,12.7V18H7.5V12.7L12,8.7M12,11.5L9,14.5L10.4,15.9L12,14.3L13.6,15.9L15,14.5L12,11.5Z'
   },
   {
     title: 'Agrofloresta',
     subtitle: 'Agroecologia e Sementes Crioulas',
     radius: '60% 40% 30% 70% / 50% 60% 40% 50%',
-    description: 'Sistemas agroflorestais que combinam árvores, arbustos, plantas alimentícias e medicinais inspirado na estrutura da floresta. O projeto desenvolveu manejo agroflorestal, produção de mudas, compostagem, cultivo de PANCs, beneficiamento de ervas e preservação de sementes crioulas — variedades tradicionais adaptadas ao bioma local.',
+    description: 'Sistemas agroflorestais que combinam árvores, arbustos, plantas alimentícias e medicinais inspirado na estrutura da floresta. O projeto desenvolve manejo agroflorestal, produção de mudas, compostagem, cultivo de PANCs, beneficiamento de ervas e preservação de sementes crioulas — variedades tradicionais adaptadas ao bioma local.',
     icon: 'M17,8C15.34,8 14,9.34 14,11C14,12.66 15.34,14 17,14C18.66,14 20,12.66 20,11C20,9.34 18.66,8 17,8M7,8C5.34,8 4,9.34 4,11C4,12.66 5.34,14 7,14C8.66,14 10,12.66 10,11C10,9.34 8.66,8 7,8M12,14C10.34,14 9,15.34 9,17C9,18.66 10.34,20 12,20C13.66,20 15,18.66 15,17C15,15.34 13.66,14 12,14Z'
   },
   {
