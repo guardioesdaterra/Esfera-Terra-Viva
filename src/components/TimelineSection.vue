@@ -1,6 +1,6 @@
 <template>
   <TextureSection type="grid-fine" :opacity="0.25" blend-mode="soft-light" color="#F4EBD9">
-    <section class="timeline-section" id="sobre">
+    <section class="timeline-section" id="sobre" ref="sectionRef">
     <div class="timeline-inner">
       <div class="timeline-header reveal">
         <h2>Nossa Trajetória</h2>
@@ -23,14 +23,14 @@
         </div>
       </div>
 
-      <div class="timeline-trail-wrapper">
-        <ImageTrail
-          :items="trailImages"
-          :variant="1"
-        />
-      </div>
-
       <FaqAccordion :items="faqItems" title="Dúvidas sobre Nossa História" />
+    </div>
+
+    <div class="timeline-trail-wrapper" ref="trailWrapperRef">
+      <ImageTrail
+        :items="trailImages"
+        :variant="1"
+      />
     </div>
   </section>
   </TextureSection>
@@ -46,6 +46,8 @@ import { faq } from '../data/faqData.js'
 
 const faqItems = faq.timeline
 const trackRef = ref(null)
+const sectionRef = ref(null)
+const trailWrapperRef = ref(null)
 
 const trailImages = [
   assetPath('images/posts/[C6II2Obo8p9]_2024-04-23_23-19-48.webp'),
@@ -58,6 +60,7 @@ const trailImages = [
   assetPath('images/posts/[C8araXJJLvr]_2024-06-19_21-12-51.webp')
 ]
 let timeObserver = null
+let mouseForwarder = null
 
 const timelineItems = [
   {
@@ -97,10 +100,27 @@ onMounted(() => {
 
   if (header) timeObserver.observe(header)
   items.forEach(item => timeObserver.observe(item))
+
+  const section = sectionRef.value
+  const wrapper = trailWrapperRef.value
+  if (!section || !wrapper) return
+
+  mouseForwarder = (e) => {
+    wrapper.dispatchEvent(new MouseEvent('mousemove', {
+      clientX: e.clientX,
+      clientY: e.clientY
+    }))
+  }
+
+  section.addEventListener('mousemove', mouseForwarder)
 })
 
 onUnmounted(() => {
   if (timeObserver) timeObserver.disconnect()
+  const section = sectionRef.value
+  if (section && mouseForwarder) {
+    section.removeEventListener('mousemove', mouseForwarder)
+  }
 })
 </script>
 
@@ -147,10 +167,10 @@ onUnmounted(() => {
 }
 
 .timeline-trail-wrapper {
-  height: 300px;
-  margin: 3rem 0;
-  position: relative;
-  border-radius: 16px;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .timeline-section h2 {
@@ -243,14 +263,6 @@ onUnmounted(() => {
   font-size: 0.85rem;
   line-height: 1.7;
   opacity: 0.8;
-}
-
-.timeline-trail-wrapper {
-  height: 300px;
-  margin: 3rem 0;
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
 }
 
 @media (max-width: 900px) {
