@@ -112,7 +112,6 @@ onUnmounted(() => {
   margin-top: 4rem;
   border-radius: 120px 120px 0 0;
   position: relative;
-  overflow: hidden;
 }
 
 .timeline-section::before {
@@ -145,6 +144,13 @@ onUnmounted(() => {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+.timeline-trail-wrapper {
+  height: 300px;
+  margin: 3rem 0;
+  position: relative;
+  border-radius: 16px;
 }
 
 .timeline-section h2 {

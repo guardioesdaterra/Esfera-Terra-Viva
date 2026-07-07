@@ -1207,16 +1207,47 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div ref="containerRef" class="z-[100] relative bg-transparent rounded-lg w-full h-full overflow-visible">
+  <div ref="containerRef" class="itrail-root">
     <div
       v-for="(url, i) in items"
       :key="i"
-      class="top-0 left-0 absolute opacity-0 rounded-[15px] w-[190px] aspect-[1.1] overflow-hidden [will-change:transform,filter] content__img"
+      class="itrail-img content__img"
     >
       <div
-        class="top-[-10px] left-[-10px] absolute bg-cover bg-center w-[calc(100%+20px)] h-[calc(100%+20px)] content__img-inner"
+        class="itrail-inner content__img-inner"
         :style="{ backgroundImage: `url(${url})` }"
       />
     </div>
   </div>
 </template>
+
+<style scoped>
+.itrail-root {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  border-radius: 8px;
+}
+.itrail-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 190px;
+  aspect-ratio: 1.1;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  will-change: transform, filter;
+}
+.itrail-inner {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-size: cover;
+  background-position: center;
+}
+</style>
