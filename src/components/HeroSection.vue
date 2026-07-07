@@ -146,8 +146,8 @@ onUnmounted(() => {
 }
 
 .hero-bg-img:nth-child(1) { background-position: center 15%; opacity: 0.7; }
-.hero-bg-img:nth-child(2) { background-position: center 500%; opacity: 0.4; }
-.hero-bg-img:nth-child(3) { background-position: center 85%; opacity: 0.5; }
+.hero-bg-img:nth-child(2) { background-position: center 50%; opacity: 0.8; }
+.hero-bg-img:nth-child(3) { background-position: center 85%; opacity: 0.9; }
 
 .hero-fog {
   position: absolute;
