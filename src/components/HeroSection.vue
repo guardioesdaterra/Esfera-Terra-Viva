@@ -165,7 +165,7 @@ onUnmounted(() => {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(244,235,217,0.92) 0%, rgba(244,235,217,0.55) 45%, rgba(244,235,217,0.8) 100%);
+  background: linear-gradient(135deg, rgba(244,235,217,0.85) 0%, rgba(244,235,217,0.40) 45%, rgba(244,235,217,0.7) 100%);
   z-index: 0;
 }
 
@@ -262,11 +262,12 @@ onUnmounted(() => {
 
 .hero p {
   max-width: 520px;
-  font-size: 1rem;
-  color: var(--moss-haze);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--clay-light);
   margin-left: auto;
   text-align: right;
-  border-right: 2px solid var(--terracotta);
+  border-right: 3px solid var(--ochre-sun);
   padding-right: 2rem;
   line-height: 1.7;
 }
@@ -290,7 +291,8 @@ onUnmounted(() => {
 
 .highlight-num {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 600;
   color: var(--terracotta);
   line-height: 1;
   display: inline-block;
@@ -298,10 +300,11 @@ onUnmounted(() => {
 
 .highlight-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  color: var(--moss-haze);
+  letter-spacing: 0.12rem;
+  color: var(--clay-light);
   margin-top: 0.4rem;
 }
 

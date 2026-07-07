@@ -3,10 +3,11 @@
   --ochre-sun-light: #f0a090;
   --clay-deep: #4A3728;
   --clay-light: #6b5542;
-  --moss-haze: #6B705C;
-  --moss-light: #8a907a;
+  --moss-haze: #4A5540;
+  --moss-light: #6d7a60;
+  --moss-muted: #8a907a;
   --sand-paper: #F4EBD9;
-  --sand-dark: #e0d5c0;
+  --sand-dark: #d4c9b5;
   --terracotta: #BC6C25;
   --terracotta-light: #d4883a;
   --ink: #2C2C2C;
@@ -110,7 +111,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
   text-transform: uppercase;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
-  color: var(--moss-haze);
+  color: var(--moss-light);
 }
 
 .container {

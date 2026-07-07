@@ -21,13 +21,12 @@
       </div>
     </div>
 
-    <div class="insta-trail-section" ref="instaSectionRef">
+    <div class="insta-posts-area" ref="instaSectionRef">
       <div class="insta-trail-wrapper" ref="instaTrailRef">
         <ImageTrail :items="trailImages" :variant="3" />
       </div>
-    </div>
 
-    <div class="posts-grid">
+      <div class="posts-grid">
       <div
         v-for="(post, index) in visiblePosts"
         :key="index"
@@ -61,6 +60,8 @@
         <span>Carregar mais</span>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
+    </div>
+
     </div>
 
     <Teleport to="body">
@@ -196,19 +197,22 @@ const onKey = (e) => {
   margin-bottom: 1rem;
 }
 
-.insta-trail-section {
+.insta-posts-area {
   position: relative;
-  height: 200px;
-  margin: 2rem 0 3rem;
-  border-radius: 16px;
-  overflow: clip;
 }
 
-.insta-trail-wrapper {
+.insta-posts-area .insta-trail-wrapper {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 0;
   pointer-events: none;
+  min-height: 300px;
+}
+
+.insta-posts-area .posts-grid,
+.insta-posts-area .load-more {
+  position: relative;
+  z-index: 1;
 }
 
 .insta-stat {
