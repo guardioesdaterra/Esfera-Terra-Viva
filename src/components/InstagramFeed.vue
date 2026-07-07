@@ -21,6 +21,12 @@
       </div>
     </div>
 
+    <div class="insta-trail-section" ref="instaSectionRef">
+      <div class="insta-trail-wrapper" ref="instaTrailRef">
+        <ImageTrail :items="trailImages" :variant="3" />
+      </div>
+    </div>
+
     <div class="posts-grid">
       <div
         v-for="(post, index) in visiblePosts"
@@ -87,13 +93,54 @@
 
 <script setup>
 import TextureSection from './textures/TextureSection.vue'
-import { ref, computed, watch } from 'vue'
+import ImageTrail from './ImageTrail.vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { postsData, accountInfo } from '../data/posts.js'
 import { assetPath } from '../utils/paths.js'
 
 const posts = ref(postsData)
 const account = ref(accountInfo)
 const visibleCount = ref(12)
+const instaSectionRef = ref(null)
+const instaTrailRef = ref(null)
+
+const trailImages = [
+  assetPath('images/posts/[C9lTHObpU1J]_2024-07-18_20-39-25_01.webp'),
+  assetPath('images/posts/[C9lTHObpU1J]_2024-07-18_20-39-25_03.webp'),
+  assetPath('images/posts/[C9lTHObpU1J]_2024-07-18_20-39-25_04.webp'),
+  assetPath('images/posts/[C9oAk16p2xO]_2024-07-19_22-04-11.webp'),
+  assetPath('images/posts/[C9sUupnJsJZ]_2024-07-21_14-23-59.webp'),
+  assetPath('images/posts/[C9x2orFSXSL]_2024-07-23_17-40-43.webp'),
+  assetPath('images/posts/[C-BK7A5S15t]_2024-07-29_16-58-57.webp'),
+  assetPath('images/posts/[C-gAb_fJf2D]_2024-08-10_16-18-24.webp')
+]
+
+let instaMouseFwd = null
+
+onMounted(() => {
+  const section = instaSectionRef.value
+  const wrapper = instaTrailRef.value
+  if (!section || !wrapper) return
+
+  instaMouseFwd = (e) => {
+    const root = wrapper.querySelector('.itrail-root')
+    if (root) {
+      root.dispatchEvent(new MouseEvent('mousemove', {
+        clientX: e.clientX,
+        clientY: e.clientY
+      }))
+    }
+  }
+
+  section.addEventListener('mousemove', instaMouseFwd)
+})
+
+onUnmounted(() => {
+  const section = instaSectionRef.value
+  if (section && instaMouseFwd) {
+    section.removeEventListener('mousemove', instaMouseFwd)
+  }
+})
 const lightboxIndex = ref(null)
 
 const visiblePosts = computed(() => posts.value.slice(0, visibleCount.value))
@@ -146,6 +193,22 @@ const onKey = (e) => {
   justify-content: center;
   gap: 2.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.insta-trail-section {
+  position: relative;
+  height: 200px;
+  margin: 2rem 0 3rem;
+  border-radius: 16px;
+  overflow: clip;
+}
+
+.insta-trail-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .insta-stat {

@@ -435,7 +435,7 @@ export const accountInfo = {
   username: "esferaterraviva",
   fullName: "Esfera Terra Viva",
   bio: "Aprendemos com a floresta e todos os seres! Desta comunhão nasce o Humano alinhado, e a esfera que tudo abarca",
-  category: "Comunidade",
+  category: "PONTO DE CULTURA",
   followerCount: 1139,
   followingCount: 357,
   postCount: 329

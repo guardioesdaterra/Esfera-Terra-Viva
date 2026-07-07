@@ -47,6 +47,9 @@
             :style="{ backgroundImage: 'url(' + img + ')' }"
           ></div>
         </div>
+        <div class="hero-dots-logo">
+          <img :src="assetPath('Three-Dots.webp')" alt="Esfera Terra Viva" />
+        </div>
       </div>
     </div>
   </section>
@@ -313,6 +316,33 @@ onUnmounted(() => {
     height: clamp(320px, 44vw, 500px);
     margin-top: -1rem;
   }
+}
+
+.hero-content :deep(.faq-title) { color: var(--white-bleached); }
+.hero-content :deep(.faq-question) { color: var(--white-bleached); }
+.hero-content :deep(.faq-question:hover) { color: var(--ochre-sun); }
+.hero-content :deep(.faq-answer p) { color: rgba(255, 255, 255, 0.8); }
+.hero-content :deep(.faq-item) { border-bottom-color: rgba(255, 255, 255, 0.08); }
+.hero-content :deep(.faq-item.open) { border-bottom-color: rgba(226, 114, 91, 0.25); }
+.hero-content :deep(.faq-chevron) { color: rgba(255, 255, 255, 0.4); }
+.hero-content :deep(.faq-item.open .faq-chevron) { color: var(--ochre-sun); }
+
+.hero-dots-logo {
+  text-align: right;
+  margin-top: 1.5rem;
+  padding-right: 1rem;
+}
+
+.hero-dots-logo img {
+  width: 52px;
+  height: auto;
+  opacity: 0.45;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hero-dots-logo img:hover {
+  opacity: 0.8;
+  transform: scale(1.08);
 }
 
 @media (max-width: 900px) {
